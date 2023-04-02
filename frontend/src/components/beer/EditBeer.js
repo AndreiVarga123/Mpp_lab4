@@ -1,37 +1,48 @@
-import React, {useState} from "react";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import {Link} from "react-router-dom";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-export default function AddBeer(){
+export default function EditBeer() {
 
-    let navigate=useNavigate();
+    let navigate = useNavigate();
+
+    const {id}= useParams();
 
     const [beer,setBeer] = useState({
-            name:"",
-            color:"",
-            alcoholLvl:0,
-            price:0,
-            packaging:""
-        });
+        name:"",
+        color:"",
+        alcoholLvl:0,
+        price:0,
+        packaging:""
+    });
 
     const{name,color,alcoholLvl,price,packaging}=beer;
 
-    const onInputChange=(e)=>{
-        setBeer({...beer,[e.target.name]:e.target.value});
+    const onInputChange = (e) => {
+        setBeer({ ...beer, [e.target.name]: e.target.value });
     };
 
-    const onSubmit = async (e) => {
+    useEffect(() => {
+        loadBeer();
+    }, []);
+
+    const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:80/beers",beer);
+
+        const result = await axios.put(`http://localhost:80/beers/${id}`, beer);
         navigate("/");
     };
 
-    return(
+    const loadBeer = async () => {
+        const result = await axios.get(`http://localhost:80/beers/${id}`);
+        setBeer(result.data);
+    }
+
+    return (
         <div className="container">
             <div className="row">
-                <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className="text-center m-4">Add Beer</h2>
+                <div className="col-md-6 shadow offset-md-3 border rounded mx-auto p-4 mt-2">
+                    <h2 className="text-center m-4">Edit Beer</h2>
 
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <div className="mb-3">
@@ -92,6 +103,7 @@ export default function AddBeer(){
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
                         <Link  className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
                     </form>
+
                 </div>
             </div>
         </div>

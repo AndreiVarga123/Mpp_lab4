@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import config from "bootstrap/js/src/util/config";
 import data from "bootstrap/js/src/dom/data";
+import {Link} from "react-router-dom";
 
 export default function Home() {
     const [beers, setBeers] = useState([]);
@@ -28,6 +29,11 @@ export default function Home() {
             }});
         setBeers(result.data);
     };
+
+    const deleteBeer = async (id) => {
+        await axios.delete(`http://localhost:80/beers/${id}`);
+        loadBeers();
+    }
 
     return (
         <div className='container'>
@@ -70,9 +76,9 @@ export default function Home() {
                             <td>{beer.price}</td>
                             <td>{beer.packaging}</td>
                             <td>
-                                <button className="btn btn-primary mx-2">View</button>
-                                <button className="btn btn-outline-primary mx-2">Edit</button>
-                                <button className="btn btn-danger mx-2">Delete</button>
+                                <Link className="btn btn-primary mx-2" to={`/viewBeer/${beer.id}`}>View</Link>
+                                <Link className="btn btn-outline-primary mx-2" to={`/editBeer/${beer.id}`}>Edit</Link>
+                                <button className="btn btn-danger mx-2" onClick={()=>deleteBeer(beer.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
