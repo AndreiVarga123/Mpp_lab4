@@ -46,6 +46,7 @@ export default function Home() {
                         placeholder={"Enter number to filter by"}
                         name={"filterNr"}
                         value={filterNr}
+                        defaultValue={0}
                         onChange={(e)=>onInputChange(e)}
                     />
                 </div>
