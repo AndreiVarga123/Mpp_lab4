@@ -36,7 +36,7 @@ export default function Home() {
         loadBeers();
     }
 
-    const onSort = (e) =>{
+    const onSort = () =>{
         const sortedList = [...beers].sort((a,b)=>{return a.price>b.price});
         setBeers(sortedList);
     }
@@ -59,8 +59,7 @@ export default function Home() {
             </form>
 
             <div className='py-4'>
-                <button className="btn btn-primary mx-2"  onClick={(e)=>onSort(e)}>Sort by price</button>
-                <br/>
+                <button className="btn btn-primary mx-2"  onClick={()=>onSort()}>Sort by price</button>
                 <table className="table border shadow">
                     <thead>
                     <tr>
