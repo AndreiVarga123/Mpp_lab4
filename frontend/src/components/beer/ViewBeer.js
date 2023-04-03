@@ -20,7 +20,7 @@ export default function ViewBeer() {
     useEffect(()=>{
         loadBeer();
 
-    },)
+    },[beer])
 
     const loadBeer=async()=>{
         const result = await axios.get(`api/beers/${id}`);

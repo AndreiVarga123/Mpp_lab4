@@ -24,7 +24,7 @@ export default function EditBeer() {
 
     useEffect(() => {
         loadBeer();
-    }, [loadBeer]);
+    }, []);
 
     const onSubmit =async (e) => {
         e.preventDefault();
