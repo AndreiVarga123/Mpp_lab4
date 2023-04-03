@@ -9,7 +9,6 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import AddBeer from "./components/beer/AddBeer";
 import EditBeer from "./components/beer/EditBeer";
 import ViewBeer from "./components/beer/ViewBeer";
-import SortBeer from "./components/beer/SortBeer";
 
 function App() {
   return (
