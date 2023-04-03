@@ -10,7 +10,9 @@ export default function Home() {
     const [filterNr,setFilterNr] = useState(0);
 
     useEffect(() => {
-        onSubmit();
+        if(filterNr!=0){
+            onSubmit();
+        }
     });
 
     const loadBeers = async () => {
