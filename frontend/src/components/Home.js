@@ -28,7 +28,7 @@ export default function Home() {
             headers: {
                 'Content-Type': 'application/json'
             }});
-        setBeers(result.data.sort((a,b)=>{return a.price>b.price}));
+        setBeers(result.data);
     };
 
     const deleteBeer = async (id) => {
@@ -37,7 +37,7 @@ export default function Home() {
     }
 
     const onSort = () =>{
-        const sortedList = [...beers].sort((a,b)=>{return a.price>b.price});
+        const sortedList = [...beers].sort((a,b)=>{return a.price>b.price?1:-1});
         setBeers(sortedList);
     }
 
