@@ -9,6 +9,7 @@ import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import AddBeer from "./components/beer/AddBeer";
 import EditBeer from "./components/beer/EditBeer";
 import ViewBeer from "./components/beer/ViewBeer";
+import SortBeer from "./components/beer/SortBeer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                   <Route exact path="/addBeer" element={<AddBeer/>} />
                   <Route exact path="/editBeer/:id" element={<EditBeer/>}/>
                   <Route exact path="/viewBeer/:id" element={<ViewBeer/>}/>
+                  <Route exact path="/sorBeer" element={<SortBeer/>}/>
               </Routes>
           </Router>
       </div>

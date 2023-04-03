@@ -10,12 +10,7 @@ export default function Home() {
     const [filterNr,setFilterNr] = useState(0);
 
     useEffect(() => {
-        if(filterNr!=0){
-            onSubmit();
-        }
-        else{
-            onSort();
-        }
+        onSubmit();
     });
 
     const loadBeers = async () => {
