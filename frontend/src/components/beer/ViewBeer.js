@@ -15,18 +15,18 @@ export default function ViewBeer() {
         beerBreweries:[]
     });
 
-    const {id}=useParams();
+    const {beerId}=useParams();
 
     useEffect(()=>{
         loadBeer();
 
-    },[beer])
+    },[beerId])
 
     const loadBeer=async()=>{
-        const result = await axios.get(`api/beers/${id}`);
-        console.log(result.data);
+        const response = await axios.get(`api/beers/${beerId}`);
+        const result = await response.json();
         setBeer(result.data);
-        console.log(beer);
+        console.log(beer.name);
     }
 
     return (
