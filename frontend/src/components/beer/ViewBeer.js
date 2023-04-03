@@ -24,7 +24,9 @@ export default function ViewBeer() {
 
     const loadBeer=async()=>{
         const result = await axios.get(`api/beers/${id}`);
-        setBeer(result.data);}
+        setBeer(result.data);
+        console.log(beer);
+    }
 
     return (
         <div className="container">
