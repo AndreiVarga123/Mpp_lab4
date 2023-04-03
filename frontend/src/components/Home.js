@@ -13,6 +13,9 @@ export default function Home() {
         if(filterNr!=0){
             onSubmit();
         }
+        else{
+            onSort();
+        }
     });
 
     const loadBeers = async () => {
