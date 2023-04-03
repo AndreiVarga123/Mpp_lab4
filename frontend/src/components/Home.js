@@ -37,7 +37,8 @@ export default function Home() {
     }
 
     const sort = async() =>{
-        setBeers(beers.sort((a,b)=>{return a.price>b.price}));
+        const sorted = beers.sort((a,b)=>{return a.price>b.price});
+        setBeers(sorted);
     }
 
     return (
