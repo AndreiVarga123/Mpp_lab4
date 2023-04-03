@@ -37,7 +37,8 @@ export default function Home() {
     }
 
     const onSort = async() =>{
-        setBeers(beers.sort((a,b)=>{return a.price>b.price}));
+        const sortedList = [...beers].sort((a,b)=>{return a.price>b.price});
+        setBeers(sortedList);
     }
 
     return (
