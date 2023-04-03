@@ -30,9 +30,9 @@ export default function Home() {
                 'Content-Type': 'application/json'
             }});
         if(sorted)
-            setBeers(result.data);
+            setBeers(result.data.sort((a,b)=>{return a.price>b.price?1:-1}));
         else
-            setBeers(result.data.sort((a,b)=>{return a.price>b.price?1:-1}))
+            setBeers(result.data);
     };
 
     const deleteBeer = async (id) => {

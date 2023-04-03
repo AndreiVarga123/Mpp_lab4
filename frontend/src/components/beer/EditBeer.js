@@ -34,8 +34,7 @@ export default function EditBeer() {
     };
 
     const loadBeer = async () => {
-        const result = await axios.get(`api/${id}`);
-        setBeer(result.data);
+        await axios.get(`api/${id}`).then((result)=>{setBeer(result.data)});
     }
 
     return (
