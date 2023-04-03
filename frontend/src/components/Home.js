@@ -28,7 +28,7 @@ export default function Home() {
             headers: {
                 'Content-Type': 'application/json'
             }});
-        setBeers(result.data);
+        setBeers(result.data.sort((a,b)=>{return a.price>b.price}));
     };
 
     const deleteBeer = async (id) => {
