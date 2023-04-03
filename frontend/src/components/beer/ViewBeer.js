@@ -18,11 +18,11 @@ export default function ViewBeer() {
     const {id}=useParams();
 
     useEffect(()=>{
-        loadEmployee();
+        loadeer();
 
     },)
 
-    const loadEmployee=async()=>{
+    const loadBeer=async()=>{
         const result = await axios.get(`api/beers/${id}`);
         setBeer(result.data);}
 
