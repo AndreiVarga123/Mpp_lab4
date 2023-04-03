@@ -23,7 +23,7 @@ export default function ViewBeer() {
     },[beerId])
 
     const loadBeer=async()=>{
-        const result = await axios.get(`api/beers/${beerId}`);
+        const result = await axios.get(`api/beers/1`);
         console.log(result);
         setBeer(result.data);
     }
