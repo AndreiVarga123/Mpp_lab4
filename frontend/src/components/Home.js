@@ -57,7 +57,7 @@ export default function Home() {
                 </div>
             </form>
 
-            <div>
+            <div className='container'>
                 <Button onClick={sort()} className="btn btn-primary mx-2">Sort by price</Button>
             </div>
 
