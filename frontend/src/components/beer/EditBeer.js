@@ -24,7 +24,7 @@ export default function EditBeer() {
 
     useEffect(() => {
         loadBeer();
-    }, []);
+    }, [loadBeer]);
 
     const onSubmit =async (e) => {
         e.preventDefault();
@@ -34,7 +34,8 @@ export default function EditBeer() {
     };
 
     const loadBeer = async () => {
-        await axios.get(`api/${id}`).then((result)=>{setBeer(result.data)});
+        const result = await axios.get(`api/${id}`);
+        setBeer(result.data);
     }
 
     return (
