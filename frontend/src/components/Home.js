@@ -10,6 +10,7 @@ export default function Home() {
 
     useEffect(() => {
         onSubmit();
+        return true;
     });
 
     const loadBeers = async () => {
