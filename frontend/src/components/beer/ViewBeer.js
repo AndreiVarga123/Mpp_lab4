@@ -18,7 +18,7 @@ export default function ViewBeer() {
     const {id}=useParams();
 
     useEffect(()=>{
-        loadeer();
+        loadBeer();
 
     },)
 
