@@ -3,6 +3,7 @@ import axios from 'axios'
 import config from "bootstrap/js/src/util/config";
 import data from "bootstrap/js/src/dom/data";
 import {Link} from "react-router-dom";
+import Button from "bootstrap/js/src/button";
 
 export default function Home() {
     const [beers, setBeers] = useState([]);
@@ -35,6 +36,10 @@ export default function Home() {
         loadBeers();
     }
 
+    const sort = async() =>{
+        setBeers(beers.sort((a,b)=>{return a.price>b.price}));
+    }
+
     return (
         <div className='container'>
             <form>
@@ -50,6 +55,10 @@ export default function Home() {
                         onChange={(e)=>onInputChange(e)}
                     />
                 </div>
+            </form>
+
+            <form sort={()=>sort()}>
+                <Button className="btn btn-primary mx-2">Sort by price</Button>
             </form>
 
             <div className='py-4'>
