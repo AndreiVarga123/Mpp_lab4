@@ -13,7 +13,7 @@ export default function Home() {
     });
 
     const loadBeers = async () => {
-        const result = await axios.get("http://localhost:80/beers/details");
+        const result = await axios.get("http://16.16.78.24:80/beers/details");
         setBeers(result.data);
 
     }
@@ -23,7 +23,7 @@ export default function Home() {
     };
 
     const onSubmit = async () => {
-        const result = await axios.post("http://localhost:80/beers/filter",filterNr, {
+        const result = await axios.post("http://16.16.78.24:80/beers/filter",filterNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -31,7 +31,7 @@ export default function Home() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`http://localhost:80/beers/${id}`);
+        await axios.delete(`http://16.16.78.24:80/beers/${id}`);
         loadBeers();
     }
 

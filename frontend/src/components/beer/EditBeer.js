@@ -29,12 +29,12 @@ export default function EditBeer() {
     const onSubmit =async (e) => {
         e.preventDefault();
 
-        const result = await axios.put(`http://localhost:80/beers/${id}`, beer);
+        const result = await axios.put(`http://16.16.78.24:80/beers/${id}`, beer);
         navigate("/");
     };
 
     const loadBeer = async () => {
-        const result = await axios.get(`http://localhost:80/beers/${id}`);
+        const result = await axios.get(`http://16.16.78.24:80/beers/${id}`);
         setBeer(result.data);
     }
 
