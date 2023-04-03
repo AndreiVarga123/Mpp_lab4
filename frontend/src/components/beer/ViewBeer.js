@@ -23,7 +23,7 @@ export default function ViewBeer() {
     },)
 
     const loadEmployee=async()=>{
-        const result = await axios.get(`http://16.16.78.24:80/beers/${id}`);
+        const result = await axios.get(`api/beers/${id}`);
         setBeer(result.data);}
 
     return (

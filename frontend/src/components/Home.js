@@ -13,7 +13,7 @@ export default function Home() {
     });
 
     const loadBeers = async () => {
-        const result = await axios.get("http://16.16.78.24:80/beers/details");
+        const result = await axios.get("api/beers/details");
         setBeers(result.data);
 
     }
@@ -31,7 +31,7 @@ export default function Home() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`http://16.16.78.24:80/beers/${id}`);
+        await axios.delete(`api/beers/${id}`);
         loadBeers();
     }
 

@@ -23,7 +23,7 @@ export default function AddBeer(){
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://16.16.78.24:80/beers",beer);
+        await axios.post("api/beers",beer);
         navigate("/");
     };
 
