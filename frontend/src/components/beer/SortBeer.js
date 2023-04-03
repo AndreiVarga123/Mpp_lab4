@@ -23,8 +23,8 @@ export default function SortBeer() {
         return 0;
     }
 
-    const loadEmployee = async () => {
-        const result = await axios.post("api/beers/filter",filterNr, {
+    const loadBeer = async () => {
+        const result = await axios.post("api/beers/filter",0, {
             headers: {
                 'Content-Type': 'application/json'
             }});
