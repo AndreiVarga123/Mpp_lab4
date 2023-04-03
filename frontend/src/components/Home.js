@@ -36,9 +36,9 @@ export default function Home() {
         loadBeers();
     }
 
-    const sort = async() =>{
-        setBeers(beers.sort((a,b)=>{return a.price>b.price}));
-    }
+    // const sort = async() =>{
+    //     setBeers(beers.sort((a,b)=>{return a.price>b.price}));
+    // }
 
     return (
         <div className='container'>
@@ -57,9 +57,9 @@ export default function Home() {
                 </div>
             </form>
 
-            <form sort={()=>sort()}>
-                <Button className="btn btn-primary mx-2">Sort by price</Button>
-            </form>
+            {/*<form sort={()=>sort()}>*/}
+            {/*    <Button className="btn btn-primary mx-2">Sort by price</Button>*/}
+            {/*</form>*/}
 
             <div className='py-4'>
                 <table className="table border shadow">
