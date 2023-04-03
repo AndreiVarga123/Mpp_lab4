@@ -41,7 +41,7 @@ export default function Home() {
     }
 
     return (
-        <div className='container'>
+        < className='container'>
             <form>
                 <br/>
                 <div className="mb-3">
@@ -57,9 +57,9 @@ export default function Home() {
                 </div>
             </form>
 
-            <div className='container'>
+            <form>
                 <Button onClick={sort()} className="btn btn-primary mx-2">Sort by price</Button>
-            </div>
+            <form/>
 
             <div className='py-4'>
                 <table className="table border shadow">
