@@ -23,7 +23,7 @@ export default function Home() {
     };
 
     const onSubmit = async () => {
-        const result = await axios.post("http://16.16.78.24:80/beers/filter",filterNr, {
+        const result = await axios.post("api/beers/filter",filterNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
