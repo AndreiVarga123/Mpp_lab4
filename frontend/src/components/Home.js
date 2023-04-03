@@ -57,7 +57,9 @@ export default function Home() {
                 </div>
             </form>
 
-            <Button onClick={sort()} className="btn btn-primary mx-2">Sort by price</Button>
+            <div>
+                <Button onClick={sort()} className="btn btn-primary mx-2">Sort by price</Button>
+            </div>
 
             <div className='py-4'>
                 <table className="table border shadow">
