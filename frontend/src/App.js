@@ -21,7 +21,6 @@ function App() {
                   <Route exact path="/addBeer" element={<AddBeer/>} />
                   <Route exact path="/editBeer/:id" element={<EditBeer/>}/>
                   <Route exact path="/viewBeer/:id" element={<ViewBeer/>}/>
-                  <Route exact path="/sorBeer" element={<SortBeer/>}/>
               </Routes>
           </Router>
       </div>

@@ -14,7 +14,6 @@ export default function Navbar(){
                     </button>
 
                     <Link className="btn btn-outline-light" to="/addBeer">Add Beer</Link>
-                    <Link className="btn btn-outline-light" to="/sortBeer">Sort Beer</Link>
                 </div>
             </nav>
         </div>
