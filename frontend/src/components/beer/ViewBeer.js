@@ -23,6 +23,7 @@ export default function ViewBeer() {
     },[])
 
     const loadBeer=async()=>{
+        console.log(beerId);
         const result = await axios.get(`http://13.50.234.244:80/beers/2`);
         console.log(result);
         setBeer(result.data);
