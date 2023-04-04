@@ -28,13 +28,13 @@ export default function EditBeer() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-
         await axios.put(`http://13.50.234.244:80/beers/${id}`, beer);
         navigate("/");
     };
 
     const loadBeer = async () => {
         const result = await axios.get(`http://13.50.234.244:80/${id}`);
+        console.log(result);
         setBeer(result.data);
     }
 
