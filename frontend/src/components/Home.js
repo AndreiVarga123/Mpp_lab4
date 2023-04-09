@@ -71,7 +71,7 @@ export default function Home() {
                     />
                 </div>
             </form>
-            <div className='py-4'>
+            <div>
                 <div>
                     <button className="btn btn-primary mx-2"  onClick={()=>onSort()}>Sort by price</button>
                 </div>
