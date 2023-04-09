@@ -10,7 +10,4 @@ public interface BeerRepo extends JpaRepository<Beer,Long> {
 
     @Query(value="SELECT b FROM Beer b JOIN FETCH b.producer  WHERE b.id>=?1 AND b.id<=?1+99")
     List<Beer> findByPage(Long page);
-
-    @Query(value="SELECT b FROM Beer b JOIN FETCH b.producer  WHERE b.id=?1")
-    Beer findByIdEager (Long id);
 }
