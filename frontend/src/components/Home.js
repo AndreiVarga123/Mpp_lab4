@@ -97,9 +97,9 @@ export default function Home() {
                     </tr>
                     </thead>
                     <tbody>
-                    {beers.map((beer, index) => (
+                    {beers.map((beer) => (
                         <tr>
-                            <th scope ="row" key = {index}>{index=index+1}</th>
+                            <td>{beer.id}</td>
                             <td>{beer.name}</td>
                             <td>{beer.prodName}</td>
                             <td>{beer.color}</td>

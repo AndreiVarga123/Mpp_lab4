@@ -87,11 +87,11 @@ class BeerServiceTest {
         service.setRepo(repoBeer);
 
         List<BeerDTO> list = new ArrayList<>();
-        BeerDTO beer1 = new BeerDTO("Ursus Retro",producers.get(1).getFounding_year(),"white",5,7, "can", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
-        BeerDTO beer2 = new BeerDTO("Heineken Silver",producers.get(2).getFounding_year(),"white",4,6, "bottle", producers.get(2).getName(), producers.get(2).getNrOfBreweries());
-        BeerDTO beer3 = new BeerDTO("Ursus Premium",producers.get(1).getFounding_year(),"white",5,8, "bottle", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
-        BeerDTO beer4 = new BeerDTO("Bucur Bruna",producers.get(3).getFounding_year(),"black",3,10, "can", producers.get(3).getName(), producers.get(3).getNrOfBreweries());
-        BeerDTO beer5 = new BeerDTO("Indigen",producers.get(0).getFounding_year(),"white",5,12, "bottle", producers.get(0).getName(), producers.get(0).getNrOfBreweries());
+        BeerDTO beer1 = new BeerDTO(1l, "Ursus Retro",producers.get(1).getFounding_year(),"white",5,7, "can", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
+        BeerDTO beer2 = new BeerDTO(2l, "Heineken Silver",producers.get(2).getFounding_year(),"white",4,6, "bottle", producers.get(2).getName(), producers.get(2).getNrOfBreweries());
+        BeerDTO beer3 = new BeerDTO(3l, "Ursus Premium",producers.get(1).getFounding_year(),"white",5,8, "bottle", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
+        BeerDTO beer4 = new BeerDTO(4l, "Bucur Bruna",producers.get(3).getFounding_year(),"black",3,10, "can", producers.get(3).getName(), producers.get(3).getNrOfBreweries());
+        BeerDTO beer5 = new BeerDTO(5l, "Indigen",producers.get(0).getFounding_year(),"white",5,12, "bottle", producers.get(0).getName(), producers.get(0).getNrOfBreweries());
 
 
 //        2 4 3 1
@@ -101,7 +101,7 @@ class BeerServiceTest {
         list.add(beer2);
         list.add(beer5);
 
-        Assertions.assertEquals(service.getStatsByFoundingYear().toString(),list.toString());
+        Assertions.assertEquals(service.getStatsByFoundingYear(1l).toString(),list.toString());
     }
 
     @Test
@@ -111,11 +111,11 @@ class BeerServiceTest {
         service.setRepo(repoBeer);
 
         List<BeerDTO> list = new ArrayList<>();
-        BeerDTO beer1 = new BeerDTO("Ursus Retro",producers.get(1).getFounding_year(),"white",5,7, "can", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
-        BeerDTO beer2 = new BeerDTO("Heineken Silver",producers.get(2).getFounding_year(),"white",4,6, "bottle", producers.get(2).getName(), producers.get(2).getNrOfBreweries());
-        BeerDTO beer3 = new BeerDTO("Ursus Premium",producers.get(1).getFounding_year(),"white",5,8, "bottle", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
-        BeerDTO beer4 = new BeerDTO("Bucur Bruna",producers.get(3).getFounding_year(),"black",3,10, "can", producers.get(3).getName(), producers.get(3).getNrOfBreweries());
-        BeerDTO beer5 = new BeerDTO("Indigen",producers.get(0).getFounding_year(),"white",5,12, "bottle", producers.get(0).getName(), producers.get(0).getNrOfBreweries());
+        BeerDTO beer1 = new BeerDTO(1l, "Ursus Retro",producers.get(1).getFounding_year(),"white",5,7, "can", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
+        BeerDTO beer2 = new BeerDTO(2l, "Heineken Silver",producers.get(2).getFounding_year(),"white",4,6, "bottle", producers.get(2).getName(), producers.get(2).getNrOfBreweries());
+        BeerDTO beer3 = new BeerDTO(3l, "Ursus Premium",producers.get(1).getFounding_year(),"white",5,8, "bottle", producers.get(1).getName(), producers.get(1).getNrOfBreweries());
+        BeerDTO beer4 = new BeerDTO(4l, "Bucur Bruna",producers.get(3).getFounding_year(),"black",3,10, "can", producers.get(3).getName(), producers.get(3).getNrOfBreweries());
+        BeerDTO beer5 = new BeerDTO(5l, "Indigen",producers.get(0).getFounding_year(),"white",5,12, "bottle", producers.get(0).getName(), producers.get(0).getNrOfBreweries());
 
 
 //        1 2 4 3
@@ -125,6 +125,6 @@ class BeerServiceTest {
         list.add(beer4);
         list.add(beer2);
 
-        Assertions.assertEquals(service.getStatsByBreweryNr().toString(),list.toString());
+        Assertions.assertEquals(service.getStatsByBreweryNr(1l).toString(),list.toString());
     }
 }

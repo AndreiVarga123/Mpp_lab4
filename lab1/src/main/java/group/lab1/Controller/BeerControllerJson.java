@@ -180,14 +180,14 @@ public class BeerControllerJson {
 
     @GetMapping("/beers/stats")
     @ResponseBody
-    public List<BeerDTO> getStatsByProdYear(){
-       return beerService.getStatsByFoundingYear();
+    public List<BeerDTO> getStatsByProdYear(@RequestBody Long page){
+       return beerService.getStatsByFoundingYear(page);
     }
 
     @GetMapping("/beers/stats2")
     @ResponseBody
-    public List<BeerDTO> getStatsByProdNrOfBreweries(){
-        return beerService.getStatsByBreweryNr();
+    public List<BeerDTO> getStatsByProdNrOfBreweries(@RequestBody Long page){
+        return beerService.getStatsByBreweryNr(page);
     }
 
     @PostMapping("/producers/{id}/beers")

@@ -26,7 +26,6 @@ public class BeerService implements Service<Beer> {
 
     @Override
     public List<Long> getAll(Long page) {
-
         return repo.findByPage(page).stream().map(beer -> beer.getId()).collect(Collectors.toList());
     }
 
@@ -58,12 +57,12 @@ public class BeerService implements Service<Beer> {
     }
 
 
-    public List<BeerDTO> getStatsByFoundingYear(){
-        return repo.findAll().stream().map(BeerDTO::toDto).sorted().collect(Collectors.toList());
+    public List<BeerDTO> getStatsByFoundingYear(Long page){
+        return repo.findByPage(page).stream().map(BeerDTO::toDto).sorted().collect(Collectors.toList());
     }
 
-    public List<BeerDTO> getStatsByBreweryNr(){
-        return repo.findAll().stream().map(BeerDTO::toDto).sorted(new Comparator<BeerDTO>() {
+    public List<BeerDTO> getStatsByBreweryNr(Long page){
+        return repo.findByPage(page).stream().map(BeerDTO::toDto).sorted(new Comparator<BeerDTO>() {
             @Override
             public int compare(BeerDTO b1, BeerDTO b2) {
                 return Integer.compare(b1.getProdNrOfBreweries(),b2.getProdNrOfBreweries());

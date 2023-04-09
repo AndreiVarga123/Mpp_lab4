@@ -1,6 +1,8 @@
 package group.lab1.Model;
 
 public class BeerDTO implements Comparable<BeerDTO>{
+
+    private Long id;
     private String name;
     private Integer prodYear;
     private String color;
@@ -20,7 +22,8 @@ public class BeerDTO implements Comparable<BeerDTO>{
 
     private Integer prodNrOfBreweries;
 
-    public BeerDTO(String name, Integer prodYear, String color, Integer alcoholLvl, Integer price, String packaging, String prodName, Integer prodNrOfBreweries) {
+    public BeerDTO(Long id, String name, Integer prodYear, String color, Integer alcoholLvl, Integer price, String packaging, String prodName, Integer prodNrOfBreweries) {
+        this.id = id;
         this.name = name;
         this.prodYear = prodYear;
         this.color = color;
@@ -103,13 +106,21 @@ public class BeerDTO implements Comparable<BeerDTO>{
         this.packaging = packaging;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public int compareTo(BeerDTO otherBeer) {
         return Integer.compare(this.getProdYear(),otherBeer.getProdYear());
     }
 
     static public BeerDTO toDto(Beer beer){
-        return new BeerDTO(beer.getName(),beer.getProducer().getFounding_year(),beer.getColor(),beer.getAlcoholLvl(), beer.getPrice(), beer.getPackaging(), beer.getProducer().getName(), beer.getProducer().getNrOfBreweries());
+        return new BeerDTO(beer.getId(), beer.getName(),beer.getProducer().getFounding_year(),beer.getColor(),beer.getAlcoholLvl(), beer.getPrice(), beer.getPackaging(), beer.getProducer().getName(), beer.getProducer().getNrOfBreweries());
     }
 }
 
