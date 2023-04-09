@@ -9,6 +9,7 @@ export default function Home() {
     const [beers, setBeers] = useState([]);
     const [filterNr,setFilterNr] = useState(0);
     const [sorted,setSorted] = useState(false);
+    const [pageNr,setPageNr] = useState(1);
 
     useEffect(() => {
         onSubmit();
@@ -96,6 +97,9 @@ export default function Home() {
                     ))}
                     </tbody>
                 </table>
+                <div>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>deleteBeer(beer.id)}>Delete</button>
+                </div>
             </div>
         </div>
     );

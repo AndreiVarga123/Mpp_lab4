@@ -5,7 +5,7 @@ import group.lab1.Model.Beer;
 import java.util.List;
 
 public interface Service<T> {
-    List<Long> getAll();
+    List<Long> getAll(Long page);
 
     T save(T obj);
 

@@ -72,7 +72,12 @@ class BeerServiceTest {
         list.add(beer4);
         list.add(beer5);
 
-        Assertions.assertEquals(service.filter(7).toString(),list.toString());
+        List<Long> test = new ArrayList<>();
+
+        test.add(1l);
+        test.add(7l);
+
+        Assertions.assertEquals(service.filter(test).toString(),list.toString());
     }
 
     @Test

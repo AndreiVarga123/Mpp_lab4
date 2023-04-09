@@ -32,8 +32,8 @@ public class BeerControllerJson {
     }
 
     @GetMapping("/beers")
-    public List<Long> listBeers(){
-        return beerService.getAll();
+    public List<Long> listBeers(@RequestBody Long page){
+        return beerService.getAll(page);
     }
 
     @GetMapping("/beers/details")
@@ -81,8 +81,8 @@ public class BeerControllerJson {
     }
 
     @GetMapping("/breweries")
-    public List<Long> listBreweries(){
-        return breweryService.getAll();
+    public List<Long> listBreweries(@RequestBody Long page){
+        return breweryService.getAll(page);
     }
 
     @GetMapping("/breweries/{id}")
@@ -113,13 +113,13 @@ public class BeerControllerJson {
     }
 
     @PostMapping(value="/beers/filter", consumes = "application/json")
-    public List<Beer> filter(@RequestBody Integer nr){
-        return beerService.filter(nr);
+    public List<Beer> filter(@RequestBody List<Long> pageAndFilterNr){
+        return beerService.filter(pageAndFilterNr);
     }
 
     @GetMapping("/producers")
-    public List<Long> listProducers(){
-        return producerService.getAll();
+    public List<Long> listProducers(@RequestBody Long page){
+        return producerService.getAll(page);
     }
 
     @GetMapping("/producers/{id}")
@@ -150,8 +150,8 @@ public class BeerControllerJson {
     }
 
     @GetMapping("/beer_breweries")
-    public List<Long> listBeerBreweries(){
-        return beerBreweryService.getAll();
+    public List<Long> listBeerBreweries(@RequestBody Long page){
+        return beerBreweryService.getAll(page);
     }
 
     @GetMapping("/beer_breweries/{id}")

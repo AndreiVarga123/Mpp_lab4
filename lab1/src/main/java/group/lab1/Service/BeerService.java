@@ -29,11 +29,11 @@ public class BeerService implements Service<Beer> {
     }
 
     @Override
-    public List<Long> getAll() {
+    public List<Long> getAll(Long page) {
 
         List<Long> ids = new ArrayList<>();
 
-        for(long i=1;i<=100;i++){
+        for(long i=page;i<=page+99;i++){
             ids.add(repo.findById(i).get().getId());
         }
 
@@ -60,8 +60,19 @@ public class BeerService implements Service<Beer> {
         repo.deleteById(id);
     }
 
-    public List<Beer> filter(Integer nr){
-        return repo.findAll().stream().filter(beer->beer.getPrice()>nr).collect(Collectors.toList());
+    public List<Beer> filter(List<Long> pageAndFilternr){
+
+        List<Beer> beers = new ArrayList<>();
+        Long page = pageAndFilternr.get(0);
+        Long filterNr = pageAndFilternr.get(1);
+
+        for(long i=page;i<=page+9;i++){
+            Beer beer = repo.findById(i).get();
+            if(beer.getPrice()>filterNr)
+                beers.add(beer);
+        }
+
+        return beers;
     }
 
 
