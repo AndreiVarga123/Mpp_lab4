@@ -55,8 +55,8 @@ public class Lab1Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		DataLoader dataLoader = new DataLoader(DB_URL,USER,PASS);
-//		dataLoader.deleteAll();
-//		dataLoader.populateAll();
+		DataLoader dataLoader = new DataLoader(DB_URL,USER,PASS);
+		dataLoader.deleteAll();
+		dataLoader.populateAll();
 	}
 }
