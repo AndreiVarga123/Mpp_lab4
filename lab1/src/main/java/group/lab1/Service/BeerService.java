@@ -36,7 +36,7 @@ public class BeerService implements Service<Beer> {
 
     @Override
     public Beer getById(Long id) {
-        return repo.findById(id).get();
+        return repo.findByIdEager(id);
     }
 
     @Override
