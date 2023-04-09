@@ -31,13 +31,7 @@ public class BeerService implements Service<Beer> {
     @Override
     public List<Long> getAll(Long page) {
 
-        List<Long> ids = new ArrayList<>();
-
-        for(long i=page;i<=page+99;i++){
-            ids.add(repo.findById(i).get().getId());
-        }
-
-        return ids;
+        return repo.findByPage(page).stream().map(beer -> beer.getId()).collect(Collectors.toList());
     }
 
     @Override
@@ -61,18 +55,10 @@ public class BeerService implements Service<Beer> {
     }
 
     public List<Beer> filter(List<Long> pageAndFilternr){
-
-        List<Beer> beers = new ArrayList<>();
         Long page = pageAndFilternr.get(0);
         Long filterNr = pageAndFilternr.get(1);
 
-        for(long i=page;i<=page+9;i++){
-            Beer beer = repo.findById(i).get();
-            if(beer.getPrice()>filterNr)
-                beers.add(beer);
-        }
-
-        return beers;
+        return repo.findByPage(page).stream().filter(beer -> beer.getPrice()>filterNr).collect(Collectors.toList());
     }
 
 
@@ -92,4 +78,6 @@ public class BeerService implements Service<Beer> {
     public List<Beer> getBeerDetails(){
         return repo.findAll();
     }
+
+
 }

@@ -17,7 +17,7 @@ public class Beer {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "producer_id")
     @JsonIgnoreProperties("beers")
     private Producer producer;

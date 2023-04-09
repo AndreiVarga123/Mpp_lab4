@@ -109,8 +109,8 @@ export default function Home() {
                     </tbody>
                 </table>
                 <div>
-                    <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Prev Page</button>
-                    <button className="btn btn-outline-primary mx-2" onClick={()=>prevPage()}>Next Page</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>prevPage()}>Prev Page</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Next Page</button>
                 </div>
             </div>
         </div>
