@@ -22,7 +22,10 @@ export default function Home() {
     }
 
     const onInputChange=(e)=>{
-        setFilterNr(e.target.value);
+        if(e.target.value==="")
+            setFilterNr(0);
+        else
+            setFilterNr(e.target.value);
     };
 
     const onSubmit = async () => {
@@ -47,13 +50,17 @@ export default function Home() {
     }
 
     const nextPage = () =>{
-        if(pageNr!==999901)
-            setPageNr(pageNr+100);
+        if(pageNr!==999901) {
+            setSorted(false);
+            setPageNr(pageNr + 100);
+        }
     }
 
     const prevPage = () =>{
-        if(pageNr!==1)
-            setPageNr(pageNr-100);
+        if(pageNr!==1) {
+            setSorted(false);
+            setPageNr(pageNr - 100);
+        }
     }
 
     return (
