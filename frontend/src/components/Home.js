@@ -26,7 +26,7 @@ export default function Home() {
     };
 
     const onSubmit = async () => {
-        const result = await axios.post("api/beers/filter",filterNr, {
+        const result = await axios.post("api/beers/filter",[pageNr,filterNr], {
             headers: {
                 'Content-Type': 'application/json'
             }});
