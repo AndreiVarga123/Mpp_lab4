@@ -45,6 +45,16 @@ export default function Home() {
         setSorted(true);
     }
 
+    const nextPage = () =>{
+        if(pageNr!==999901)
+            setPageNr(pageNr+100);
+    }
+
+    const prevPage = () =>{
+        if(pageNr!==1)
+            setPageNr(pageNr-100);
+    }
+
     return (
         <div className='container'>
             <form>
@@ -98,7 +108,8 @@ export default function Home() {
                     </tbody>
                 </table>
                 <div>
-                    <button className="btn btn-outline-primary mx-2" onClick={()=>deleteBeer(beer.id)}>Delete</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Prev Page</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>prevPage()}>Next Page</button>
                 </div>
             </div>
         </div>
