@@ -3,10 +3,14 @@ package group.lab1.Service;
 import group.lab1.Model.Beer;
 import group.lab1.Model.BeerDTO;
 import group.lab1.Repo.BeerRepo;
+import org.w3c.dom.ranges.Range;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @org.springframework.stereotype.Service
 public class BeerService implements Service<Beer> {
@@ -26,7 +30,14 @@ public class BeerService implements Service<Beer> {
 
     @Override
     public List<Long> getAll() {
-        return repo.findAll().stream().map(beer->beer.getId()).collect(Collectors.toList());
+
+        List<Long> ids = new ArrayList<>();
+
+        for(long i=1;i<=100;i++){
+            ids.add(repo.findById(i).get().getId());
+        }
+
+        return ids;
     }
 
     @Override
@@ -65,5 +76,9 @@ public class BeerService implements Service<Beer> {
                 return Integer.compare(b1.getProdNrOfBreweries(),b2.getProdNrOfBreweries());
             }
         }).collect(Collectors.toList());
+    }
+
+    public List<Beer> getBeerDetails(){
+        return repo.findAll();
     }
 }

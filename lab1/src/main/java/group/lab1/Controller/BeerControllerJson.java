@@ -7,13 +7,12 @@ import group.lab1.Service.BreweryService;
 import group.lab1.Service.ProducerService;
 import group.lab1.Validator.BeerValidator;
 import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.DataBinder;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.EscapedErrors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ServerWebInputException;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -37,6 +36,9 @@ public class BeerControllerJson {
         return beerService.getAll();
     }
 
+    @GetMapping("/beers/details")
+    public List<Beer> listBeerDetails(){return beerService.getBeerDetails();}
+
     @GetMapping("/beers/{id}")
     public Beer listBeer(@PathVariable Long id){
         return beerService.getById(id);
@@ -45,27 +47,32 @@ public class BeerControllerJson {
     @PostMapping("/beers")
     public Object addBeer( @RequestBody Beer beer){
         Errors errors = new BeanPropertyBindingResult(beer,"beer");
-        beerValidator.validate(beer,errors);
-        if(errors.hasErrors())
-            return errors.getAllErrors().stream().map(e->e.getCode()).collect(Collectors.toList());
-        return beerService.save(beer);
+        try{
+            beerValidator.validate(beer,errors);
+            return beerService.save(beer);
+        }
+        catch (ServerWebInputException e) {
+            return e.getMessage();
+        }
     }
 
     @PutMapping("/beers/{id}")
     public Object updateBeer(@RequestBody Beer beer, @PathVariable Long id){
         Errors errors = new BeanPropertyBindingResult(beer,"beer");
-        beerValidator.validate(beer,errors);
-        if(errors.hasErrors())
-            return errors.getAllErrors().stream().map(e->e.getCode()).collect(Collectors.toList());
+        try{
+            beerValidator.validate(beer,errors);
 
-        Beer oldBeer = beerService.getById(id);
-        oldBeer.setName(beer.getName());
-        oldBeer.setColor(beer.getColor());
-        oldBeer.setAlcoholLvl(beer.getAlcoholLvl());
-        oldBeer.setPrice(beer.getPrice());
-        oldBeer.setPackaging(beer.getPackaging());
+            Beer oldBeer = beerService.getById(id);
+            oldBeer.setName(beer.getName());
+            oldBeer.setColor(beer.getColor());
+            oldBeer.setAlcoholLvl(beer.getAlcoholLvl());
+            oldBeer.setPrice(beer.getPrice());
+            oldBeer.setPackaging(beer.getPackaging());
 
-        return beerService.save(oldBeer);
+            return beerService.save(oldBeer);
+        }catch (ServerWebInputException e){
+            return e.getMessage();
+        }
     }
 
     @DeleteMapping("/beers/{id}")
@@ -100,12 +107,12 @@ public class BeerControllerJson {
         return breweryService.save(oldBrewery);
     }
 
-    @DeleteMapping("/brewery/{id}")
+    @DeleteMapping("/breweries/{id}")
     public void deleteBrewery(@PathVariable Long id){
         breweryService.delete(id);
     }
 
-    @GetMapping("/beers/filter")
+    @PostMapping(value="/beers/filter", consumes = "application/json")
     public List<Beer> filter(@RequestBody Integer nr){
         return beerService.filter(nr);
     }
@@ -173,13 +180,23 @@ public class BeerControllerJson {
 
     @GetMapping("/beers/stats")
     @ResponseBody
-    public List<BeerDTO> getStats(){
+    public List<BeerDTO> getStatsByProdYear(){
        return beerService.getStatsByFoundingYear();
     }
 
     @GetMapping("/beers/stats2")
     @ResponseBody
-    public List<BeerDTO> getStats2(){
+    public List<BeerDTO> getStatsByProdNrOfBreweries(){
         return beerService.getStatsByBreweryNr();
+    }
+
+    @PostMapping("/producers/{id}/beers")
+    public Producer addBeersForProducer(@PathVariable Long id,@RequestBody List<Beer> beers){
+        Producer oldProducer = producerService.getById(id);
+        List<Beer> newBeers = new ArrayList<>();
+        newBeers.addAll(oldProducer.getBeers());
+        newBeers.addAll(beers);
+        oldProducer.setBeers(newBeers);
+        return producerService.save(oldProducer);
     }
 }

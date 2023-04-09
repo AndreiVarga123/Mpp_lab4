@@ -97,4 +97,7 @@ public class Producer {
     public void setNrOfBreweries(Integer nrOfBreweries) {
         this.nrOfBreweries = nrOfBreweries;
     }
+
+    public void addBeers(List<Beer> beers){
+        this.beers.addAll(beers);    }
 }

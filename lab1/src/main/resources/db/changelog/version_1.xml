@@ -1,0 +1,117 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="varga (generated)" id="1681053536204-1">
+        <createTable tableName="beer_brewery">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="beer_brewery_pkey"/>
+            </column>
+            <column name="quantity" type="INTEGER"/>
+            <column name="quality_tested" type="BOOLEAN"/>
+            <column name="beer_id" type="BIGINT"/>
+            <column name="brewery_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-2">
+        <createTable tableName="beers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="beers_pkey"/>
+            </column>
+            <column name="alcohol_level" type="INTEGER"/>
+            <column name="color" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="packaging" type="VARCHAR(255)"/>
+            <column name="price" type="INTEGER"/>
+            <column name="producer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-3">
+        <createTable tableName="breweries">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="breweries_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="website" type="VARCHAR(255)"/>
+            <column name="founding_year" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-4">
+        <createTable tableName="producers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="producers_pkey"/>
+            </column>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="founding_year" type="INTEGER"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="nr_of_breweries" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-5">
+        <addForeignKeyConstraint baseColumnNames="producer_id" baseTableName="beers" constraintName="fkbrq1y5fbdm1cknakrdvmp5mrk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="producers" validate="true"/>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-6">
+        <addForeignKeyConstraint baseColumnNames="beer_id" baseTableName="beer_brewery" constraintName="fkhphykgcfp3d952yqynpakjqv8" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="beers" validate="true"/>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053536204-7">
+        <addForeignKeyConstraint baseColumnNames="brewery_id" baseTableName="beer_brewery" constraintName="fkkp7os6roxbfrpgu7gq63sil2w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="breweries" validate="true"/>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-1">
+        <createTable tableName="beer_brewery">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="beer_brewery_pkey"/>
+            </column>
+            <column name="quantity" type="INTEGER"/>
+            <column name="quality_tested" type="BOOLEAN"/>
+            <column name="beer_id" type="BIGINT"/>
+            <column name="brewery_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-2">
+        <createTable tableName="beers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="beers_pkey"/>
+            </column>
+            <column name="alcohol_level" type="INTEGER"/>
+            <column name="color" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="packaging" type="VARCHAR(255)"/>
+            <column name="price" type="INTEGER"/>
+            <column name="producer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-3">
+        <createTable tableName="breweries">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="breweries_pkey"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="website" type="VARCHAR(255)"/>
+            <column name="founding_year" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-4">
+        <createTable tableName="producers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="producers_pkey"/>
+            </column>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="founding_year" type="INTEGER"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="nr_of_breweries" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-5">
+        <addForeignKeyConstraint baseColumnNames="producer_id" baseTableName="beers" constraintName="fkbrq1y5fbdm1cknakrdvmp5mrk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="producers" validate="true"/>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-6">
+        <addForeignKeyConstraint baseColumnNames="beer_id" baseTableName="beer_brewery" constraintName="fkhphykgcfp3d952yqynpakjqv8" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="beers" validate="true"/>
+    </changeSet>
+    <changeSet author="varga (generated)" id="1681053911183-7">
+        <addForeignKeyConstraint baseColumnNames="brewery_id" baseTableName="beer_brewery" constraintName="fkkp7os6roxbfrpgu7gq63sil2w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="breweries" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

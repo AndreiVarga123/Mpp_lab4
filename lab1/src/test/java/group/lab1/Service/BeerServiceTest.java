@@ -57,7 +57,7 @@ class BeerServiceTest {
     }
 
     @Test
-    void filter() {
+    void filterReturnsListWithElemsHigherThanGivenValue() {
         when(repoBeer.findAll()).thenReturn(beers);
 
         service.setRepo(repoBeer);
@@ -76,7 +76,7 @@ class BeerServiceTest {
     }
 
     @Test
-    void getStatsByFoundingYear() {
+    void getStatsByFoundingYearReturnsListOrderAfterYear() {
         when(repoBeer.findAll()).thenReturn(beers);
 
         service.setRepo(repoBeer);
@@ -100,7 +100,7 @@ class BeerServiceTest {
     }
 
     @Test
-    void getStatsByBreweryNr() {
+    void getStatsByBreweryNrReturnsListOrderedAfterNrOfBreweries() {
         when(repoBeer.findAll()).thenReturn(beers);
 
         service.setRepo(repoBeer);
