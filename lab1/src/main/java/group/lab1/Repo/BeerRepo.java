@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface BeerRepo extends JpaRepository<Beer,Long> {
 
-    @Query(value="SELECT * FROM beers WHERE beers.id>=?1 AND beers.id<=?1+99",nativeQuery = true)
+    @Query(value="SELECT b FROM Beer b JOIN FETCH b.producer  WHERE b.id>=?1 AND b.id<=?1+99")
     List<Beer> findByPage(Long page);
 }
