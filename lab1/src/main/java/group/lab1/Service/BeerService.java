@@ -3,14 +3,10 @@ package group.lab1.Service;
 import group.lab1.Model.Beer;
 import group.lab1.Model.BeerDTO;
 import group.lab1.Repo.BeerRepo;
-import org.w3c.dom.ranges.Range;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 @org.springframework.stereotype.Service
 public class BeerService implements Service<Beer> {
@@ -54,20 +50,20 @@ public class BeerService implements Service<Beer> {
         repo.deleteById(id);
     }
 
-    public List<Beer> filter(List<Long> pageAndFilternr){
+    public List<BeerDTO> filter(List<Long> pageAndFilternr){
         Long page = pageAndFilternr.get(0);
         Long filterNr = pageAndFilternr.get(1);
 
-        return repo.findByPage(page).stream().filter(beer -> beer.getPrice()>filterNr).collect(Collectors.toList());
+        return repo.findByPage(page).stream().filter(beer -> beer.getPrice()>filterNr).map(BeerDTO::toDto).collect(Collectors.toList());
     }
 
 
     public List<BeerDTO> getStatsByFoundingYear(){
-        return repo.findAll().stream().map(beer -> {return new BeerDTO(beer.getName(),beer.getProducer().getFounding_year(),beer.getColor(),beer.getAlcoholLvl(), beer.getPrice(), beer.getPackaging(), beer.getProducer().getNrOfBreweries());}).sorted().collect(Collectors.toList());
+        return repo.findAll().stream().map(BeerDTO::toDto).sorted().collect(Collectors.toList());
     }
 
     public List<BeerDTO> getStatsByBreweryNr(){
-        return repo.findAll().stream().map(beer -> {return new BeerDTO(beer.getName(),beer.getProducer().getFounding_year(),beer.getColor(),beer.getAlcoholLvl(), beer.getPrice(), beer.getPackaging(), beer.getProducer().getNrOfBreweries());}).sorted(new Comparator<BeerDTO>() {
+        return repo.findAll().stream().map(BeerDTO::toDto).sorted(new Comparator<BeerDTO>() {
             @Override
             public int compare(BeerDTO b1, BeerDTO b2) {
                 return Integer.compare(b1.getProdNrOfBreweries(),b2.getProdNrOfBreweries());

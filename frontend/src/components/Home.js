@@ -94,7 +94,7 @@ export default function Home() {
                         <tr>
                             <th scope ="row" key = {index}>{index=index+1}</th>
                             <td>{beer.name}</td>
-                            <td>{beer.producer?.name}</td>
+                            <td>{beer.prodName}</td>
                             <td>{beer.color}</td>
                             <td>{beer.alcoholLvl}</td>
                             <td>{beer.price}</td>

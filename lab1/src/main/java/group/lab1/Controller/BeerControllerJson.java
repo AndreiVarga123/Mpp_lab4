@@ -113,7 +113,7 @@ public class BeerControllerJson {
     }
 
     @PostMapping(value="/beers/filter", consumes = "application/json")
-    public List<Beer> filter(@RequestBody List<Long> pageAndFilterNr){
+    public List<BeerDTO> filter(@RequestBody List<Long> pageAndFilterNr){
         return beerService.filter(pageAndFilterNr);
     }
 
