@@ -104,7 +104,6 @@ public class DataLoader {
     }
 
     public void populateBeers() throws SQLException {
-        stmt.execute("DELETE FROM beers");
         stmt.execute("ALTER SEQUENCE beers_id_seq  RESTART WITH 1");
 
         List<String> packagings = Arrays.asList("can","bottle","keg");
