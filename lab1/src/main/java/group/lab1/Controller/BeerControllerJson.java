@@ -40,8 +40,8 @@ public class BeerControllerJson {
     public List<Beer> listBeerDetails(){return beerService.getBeerDetails();}
 
     @GetMapping("/beers/{id}")
-    public Beer listBeer(@PathVariable Long id){
-        return beerService.getById(id);
+    public GoodBeerDTO listBeer(@PathVariable Long id){
+        return beerService.findById(id);
     }
 
     @PostMapping("/beers")

@@ -2,6 +2,7 @@ package group.lab1.Service;
 
 import group.lab1.Model.Beer;
 import group.lab1.Model.BeerDTO;
+import group.lab1.Model.GoodBeerDTO;
 import group.lab1.Repo.BeerRepo;
 
 import java.util.Comparator;
@@ -74,5 +75,8 @@ public class BeerService implements Service<Beer> {
         return repo.findAll();
     }
 
+    public GoodBeerDTO findById(Long id){
+        return GoodBeerDTO.toDTO(repo.findById(id).get());
+    }
 
 }
