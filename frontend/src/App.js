@@ -4,7 +4,7 @@ import './App.css'
 import React from 'react';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import HomeBeer from "./components/beer/HomeBeer";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import AddBeer from "./components/beer/AddBeer";
 import EditBeer from "./components/beer/EditBeer";
@@ -16,7 +16,7 @@ function App() {
           <Router>
               <Navbar/>
               <Routes>
-                  <Route exact path="/" element={<Home/>} />
+                  <Route exact path="/Beer" element={<HomeBeer/>} />
                   <Route exact path="/addBeer" element={<AddBeer/>} />
                   <Route exact path="/editBeer/:id" element={<EditBeer/>}/>
                   <Route exact path="/viewBeer/:id" element={<ViewBeer/>}/>

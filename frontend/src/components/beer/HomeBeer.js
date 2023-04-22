@@ -5,7 +5,7 @@ import data from "bootstrap/js/src/dom/data";
 import {Link} from "react-router-dom";
 import Button from "bootstrap/js/src/button";
 
-export default function Home() {
+export default function HomeBeer() {
     const [beers, setBeers] = useState([]);
     const [filterNr,setFilterNr] = useState(0);
     const [sorted,setSorted] = useState(false);
@@ -15,11 +15,11 @@ export default function Home() {
         onSubmit();
     });
 
-    const loadBeers = async () => {
-        const result = await axios.get("api/beers/details");
-        setBeers(result.data);
-
-    }
+    // const loadBeers = async () => {
+    //     const result = await axios.get("api/beers/details");
+    //     setBeers(result.data);
+    //
+    // }
 
     const onInputChange=(e)=>{
         if(e.target.value==="")
@@ -40,8 +40,7 @@ export default function Home() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`api/beers/${id}`);
-        loadBeers();
+        await axios.delete(`http://13.49.231.95:80/beers/${id}`);
     }
 
     const onSort = () =>{
