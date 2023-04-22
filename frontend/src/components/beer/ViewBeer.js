@@ -23,12 +23,8 @@ export default function ViewBeer() {
     },[])
 
     const loadBeer=async()=>{
-<<<<<<< HEAD
         const result = await axios.get(`http://13.49.231.95:80/beers/${id}`);
         console.log(result);
-=======
-        const result = await axios.get(`http://13.53.172.7:80/beers/${id}`);
->>>>>>> ac36dfd659a6a602239793fba6ad58c895b5974f
         setBeer(result.data);
     }
 
