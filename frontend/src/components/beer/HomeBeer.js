@@ -40,7 +40,7 @@ export default function HomeBeer() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`http://13.49.231.95:80/beers/${id}`);
+        await axios.delete(`api/beers/${id}`);
     }
 
     const onSort = () =>{
