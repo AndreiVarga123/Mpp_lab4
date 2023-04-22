@@ -9,7 +9,6 @@ public class BeerDTO implements Comparable<BeerDTO>{
     private Integer alcoholLvl;
     private Integer price;
     private String packaging;
-
     private String prodName;
 
     public String getProdName() {
