@@ -41,6 +41,7 @@ export default function HomeBeer() {
 
     const deleteBeer = async (id) => {
         await axios.delete(`api/beers/${id}`);
+        onSubmit();
     }
 
     const onSort = () =>{
