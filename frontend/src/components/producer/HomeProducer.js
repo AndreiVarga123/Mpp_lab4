@@ -17,7 +17,7 @@ export default function HomeProducer() {
     // }
 
     const loadProducers = async () => {
-        const result = await axios.post("api/producers/dto",[pageNr], {
+        const result = await axios.post("http://13.48.131.195:80/producers/dto",[pageNr], {
             headers: {
                 'Content-Type': 'application/json'
             }});
