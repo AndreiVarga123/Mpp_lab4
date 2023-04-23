@@ -8,14 +8,24 @@ public class ProducerDTO {
     private Integer founding_year;
     private String descr;
     private Integer nrOfBreweries;
+    private Integer nrOfBeers;
 
-    public ProducerDTO(Long id, String name, String country, Integer founding_year, String descr, Integer nrOfBreweries) {
+    public ProducerDTO(Long id, String name, String country, Integer founding_year, String descr, Integer nrOfBreweries, Integer nrOfBeers) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.founding_year = founding_year;
         this.descr = descr;
         this.nrOfBreweries = nrOfBreweries;
+        this.nrOfBeers = nrOfBeers;
+    }
+
+    public Integer getNrOfBeers() {
+        return nrOfBeers;
+    }
+
+    public void setNrOfBeers(Integer nrOfBeers) {
+        this.nrOfBeers = nrOfBeers;
     }
 
     public Long getId() {
@@ -67,6 +77,6 @@ public class ProducerDTO {
     }
 
     static public ProducerDTO toDTO(Producer producer){
-        return new ProducerDTO(producer.getId(),producer.getName(),producer.getCountry(), producer.getFounding_year(), producer.getDescr(), producer.getNrOfBreweries());
+        return new ProducerDTO(producer.getId(),producer.getName(),producer.getCountry(), producer.getFounding_year(), producer.getDescr(), producer.getNrOfBreweries(), producer.getBeers().size());
     }
 }
