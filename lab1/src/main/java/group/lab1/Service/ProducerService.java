@@ -24,7 +24,7 @@ public class ProducerService implements Service<Producer> {
     }
 
     public List<ProducerDTO> getAllDTO(Long page) {
-        return repo.findByPage(page).stream().map(producer -> ProducerDTO.toDTO(producer)).collect(Collectors.toList());
+        return repo.findByPage(page).stream().map(ProducerDTO::toDTO).collect(Collectors.toList());
     }
 
     @Override
