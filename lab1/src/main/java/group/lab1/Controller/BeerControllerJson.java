@@ -122,6 +122,9 @@ public class BeerControllerJson {
         return producerService.getAll(page);
     }
 
+    @PostMapping("/producers/dto")
+    public List<ProducerDTO> listProducersDTO(@RequestBody Long page){return  producerService.getAllDTO(page);}
+
     @GetMapping("/producers/{id}")
     public Producer listProducer(@PathVariable Long id){
         return producerService.getById(id);

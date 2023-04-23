@@ -2,6 +2,7 @@ package group.lab1.Service;
 
 
 import group.lab1.Model.Producer;
+import group.lab1.Model.ProducerDTO;
 import group.lab1.Repo.ProducerRepo;
 
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class ProducerService implements Service<Producer> {
     @Override
     public List<Long> getAll(Long page) {
         return repo.findByPage(page).stream().map(producer -> producer.getId()).collect(Collectors.toList());
+    }
+
+    public List<ProducerDTO> getAllDTO(Long page) {
+        return repo.findByPage(page).stream().map(producer -> ProducerDTO.toDTO(producer)).collect(Collectors.toList());
     }
 
     @Override

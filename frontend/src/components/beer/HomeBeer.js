@@ -12,7 +12,7 @@ export default function HomeBeer() {
     const [pageNr,setPageNr] = useState(1);
 
     useEffect(() => {
-        onSubmit();
+        loadBeers();
     });
 
     // const loadBeers = async () => {
@@ -28,7 +28,7 @@ export default function HomeBeer() {
             setFilterNr(e.target.value);
     };
 
-    const onSubmit = async () => {
+    const loadBeers = async () => {
         const result = await axios.post("api/beers/filter",[pageNr,filterNr], {
             headers: {
                 'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export default function HomeBeer() {
 
     const deleteBeer = async (id) => {
         await axios.delete(`api/beers/${id}`);
-        onSubmit();
+        loadBeers();
     }
 
     const onSort = () =>{
