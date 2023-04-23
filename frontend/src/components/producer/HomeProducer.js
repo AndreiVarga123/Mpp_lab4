@@ -17,14 +17,15 @@ export default function HomeProducer() {
     // }
 
     const loadProducers = async () => {
-        const result = await axios.post("http://13.48.131.195:80/producers/dto",[pageNr], {
+        const result = await axios.post("api/producers/dto",[pageNr], {
             headers: {
                 'Content-Type': 'application/json'
             }});
-            setProducers(result.data);
+        console.log(result.data);
+        setProducers(result.data);
     };
 
-    const deleteBeer = async (id) => {
+    const deleteProducer = async (id) => {
         await axios.delete(`api/producers/${id}`);
         loadProducers();
     }
@@ -53,7 +54,7 @@ export default function HomeProducer() {
                         <th scope="col">Founding Year</th>
                         <th scope="col">Description</th>
                         <th scope="col">Number of Breweries</th>
-                        <th scope="col">NUmber of Beers</th>
+                        <th scope="col">Number of Beers</th>
                         <th scope='col'>Action</th>
                     </tr>
                     </thead>
