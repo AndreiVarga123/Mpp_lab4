@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 export default function HomeProducer() {
     const [producers, setProducers] = useState([]);
-    const [filterNr,setFilterNr] = useState(0);
     const [pageNr,setPageNr] = useState(1);
 
     useEffect(() => {
@@ -18,7 +17,7 @@ export default function HomeProducer() {
     // }
 
     const loadProducers = async () => {
-        const result = await axios.post("api/producers/dto",[pageNr,filterNr], {
+        const result = await axios.post("api/producers/dto",[pageNr], {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -67,7 +66,7 @@ export default function HomeProducer() {
                             <td>{producer.founding_year}</td>
                             <td>{producer.descr}</td>
                             <td>{producer.nrOfBreweries}</td>
-                            {/*<td>{producer.nrOfBeers}</td>*/}
+                            <td>{producer.nrOfBeers}</td>
                             {/*<td>*/}
                             {/*    <Link className="btn btn-primary mx-2" to={`/viewBeer/${producer.id}`}>View</Link>*/}
                             {/*    <Link className="btn btn-outline-primary mx-2" to={`/editBeer/${producer.id}`}>Edit</Link>*/}
