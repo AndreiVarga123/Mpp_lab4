@@ -30,7 +30,6 @@ export default function HomeProducer() {
         loadProducers();
     }
 
-
     const nextPage = () =>{
         if(pageNr!==999901) {
             setPageNr(pageNr + 100);
