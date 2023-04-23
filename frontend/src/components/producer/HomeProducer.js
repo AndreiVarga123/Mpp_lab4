@@ -10,14 +10,9 @@ export default function HomeProducer() {
         loadProducers();
     });
 
-    // const loadproducers = async () => {
-    //     const result = await axios.get("api/producers/details");
-    //     setproducers(result.data);
-    //
-    // }
 
     const loadProducers = async () => {
-        const result = await axios.post("api/producers/dto",[pageNr], {
+        const result = await axios.post("api/producers/dto",pageNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
