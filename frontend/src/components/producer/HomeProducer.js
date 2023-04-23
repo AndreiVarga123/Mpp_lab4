@@ -67,7 +67,7 @@ export default function HomeProducer() {
                             <td>{producer.founding_year}</td>
                             <td>{producer.descr}</td>
                             <td>{producer.nrOfBreweries}</td>
-                            <td>{producer.nrOfBeers}</td>
+                            {/*<td>{producer.nrOfBeers}</td>*/}
                             {/*<td>*/}
                             {/*    <Link className="btn btn-primary mx-2" to={`/viewBeer/${producer.id}`}>View</Link>*/}
                             {/*    <Link className="btn btn-outline-primary mx-2" to={`/editBeer/${producer.id}`}>Edit</Link>*/}
