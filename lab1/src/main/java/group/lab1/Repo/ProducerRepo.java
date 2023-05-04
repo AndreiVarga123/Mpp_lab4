@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProducerRepo extends JpaRepository<Producer,Long> {
-    @Query(value="SELECT p FROM Producer p JOIN FETCH p.beers  WHERE p.id>=?1 AND p.id<=?1+99")
+    @Query(value="SELECT p FROM Producer p JOIN FETCH p.beers  WHERE p.id>=?1 AND p.id<=?1+99 ORDER BY p.id")
     List<Producer> findByPage(Long page);
 }
