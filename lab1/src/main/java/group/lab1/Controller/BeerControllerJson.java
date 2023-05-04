@@ -36,9 +36,6 @@ public class BeerControllerJson {
         return beerService.getAll(page);
     }
 
-    @GetMapping("/beers/details")
-    public List<Beer> listBeerDetails(){return beerService.getBeerDetails();}
-
     @GetMapping("/beers/{id}")
     public Beer listBeer(@PathVariable Long id){
         return beerService.getById(id);
