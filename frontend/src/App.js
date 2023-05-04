@@ -11,6 +11,7 @@ import EditBeer from "./components/beer/EditBeer";
 import ViewBeer from "./components/beer/ViewBeer";
 import HomeProducer from "./components/producer/HomeProducer";
 import ViewProducer from "./components/producer/ViewProducer";
+import EditProducer from "./components/producer/EditProducer";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
 
                   <Route exact path="/Producer" element={<HomeProducer/>} />
                   {/*<Route exact path="/addProducer" element={<AddProducer/>} />*/}
-                  {/*<Route exact path="/editProducer/:id" element={<EditProducer/>}/>*/}
+                  <Route exact path="/editProducer/:id" element={<EditProducer/>}/>
                   <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
               </Routes>
           </Router>

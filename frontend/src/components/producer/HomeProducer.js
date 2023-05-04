@@ -16,7 +16,6 @@ export default function HomeProducer() {
             headers: {
                 'Content-Type': 'application/json'
             }});
-        console.log(result.data);
         setProducers(result.data);
     };
 
