@@ -63,6 +63,11 @@ export default function HomeProducer() {
                             <td>{producer.descr}</td>
                             <td>{producer.nrOfBreweries}</td>
                             <td>{producer.nrOfBeers}</td>
+                            <td>
+                                <Link className="btn btn-primary mx-2" to={`/viewBeer/${producer.id}`}>View</Link>
+                                <Link className="btn btn-outline-primary mx-2" to={`/editBeer/${producer.id}`}>Edit</Link>
+                                <button className="btn btn-danger mx-2" onClick={()=>deleteProducer(producer.id)}>Delete</button>
+                            </td>
                             {/*<td>*/}
                             {/*    <Link className="btn btn-primary mx-2" to={`/viewBeer/${producer.id}`}>View</Link>*/}
                             {/*    <Link className="btn btn-outline-primary mx-2" to={`/editBeer/${producer.id}`}>Edit</Link>*/}
