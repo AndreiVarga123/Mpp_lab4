@@ -22,7 +22,7 @@ export default function ViewProducer() {
     },[])
 
     const loadProducer=async()=>{
-        const result = await axios.get(`http://13.49.158.218:80/producers/${id}`);
+        const result = await axios.get(`http://16.16.146.242:80/producers/${id}`);
         console.log(result);
         setProducer(result.data);
     }
