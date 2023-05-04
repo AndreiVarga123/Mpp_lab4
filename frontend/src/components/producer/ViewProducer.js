@@ -59,7 +59,7 @@ export default function ViewProducer() {
                                     {String(producer.nrOfBreweries)}
                                 </li>
                                 <li className="list-group-item">
-                                    <b>Breweries:</b>
+                                    <b>Beer:</b>
                                     {producer.beers?.map(beer => (
                                         <div>
                                             <br/>Beer {beer?.beer.id}<br/>
