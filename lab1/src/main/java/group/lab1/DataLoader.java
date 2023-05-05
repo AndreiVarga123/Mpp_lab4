@@ -153,7 +153,7 @@ public class DataLoader {
                 if(j%100==0){
                     beer_id = faker.random().nextInt(BoundForBeerId-9,BoundForBeerId).toString();
                     BoundForBeerId += 10;
-                    BoundForBrewery = 10000;
+                    BoundForBrewery += 10000;
                 }
 
                 brewery_id = faker.random().nextInt(BoundForBrewery-9999,BoundForBrewery).toString();

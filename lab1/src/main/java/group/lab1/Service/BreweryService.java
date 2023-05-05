@@ -22,7 +22,7 @@ public class BreweryService implements Service<Brewery>{
     }
 
     public List<BreweryDTO> getAllDTO(Long page){
-        return repo.findByPage(page).stream().map(BreweryDTO::toDTO).collect(Collectors.toList());
+        return repo.findByPage(page).stream().map(brewery -> BreweryDTO.toDTO(brewery, repo.findNrOfBeers(brewery.getId()))).collect(Collectors.toList());
     }
 
     @Override

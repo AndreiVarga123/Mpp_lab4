@@ -71,7 +71,7 @@ export default function ViewProducer() {
 
                         </div>
                     </div>
-                    <Link className="btn btn-primary my-2" to="/">Back to Home</Link>
+                    <Link className="btn btn-primary my-2" to="/producers">Back to Home</Link>
                 </div>
             </div>
 

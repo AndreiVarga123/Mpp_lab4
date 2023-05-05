@@ -6,6 +6,8 @@ export default function EditBrewery() {
 
     let navigate = useNavigate();
 
+    const {id}= useParams();
+
     const [brewery,setBrewery] = useState({
         id:0,
         name:"",
@@ -23,7 +25,7 @@ export default function EditBrewery() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://16.16.146.242:80/breweries/${id}`, brewery);
+        await axios.put(`http://localhost:80/breweries/${id}`, brewery);
         navigate("/");
     };
 
@@ -90,7 +92,7 @@ export default function EditBrewery() {
                             />
                         </div>
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link  className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
+                        <Link  className="btn btn-outline-danger mx-2" to="/brewery">Cancel</Link>
                     </form>
 
                 </div>

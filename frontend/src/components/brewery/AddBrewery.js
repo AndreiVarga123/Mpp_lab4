@@ -29,12 +29,12 @@ export default function EditBrewery() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://16.16.146.242:80/breweries/${id}`, brewery);
+        await axios.post(`http://localhost:80/breweries`, brewery);
         navigate("/");
     };
 
     const loadBrewery = async () => {
-        const result = await axios.get(`http://16.16.146.242:80/breweries/${id}`);
+        const result = await axios.get(`http://localhost:80/breweries/${id}`);
         setBrewery(result.data);
     }
 
@@ -101,7 +101,7 @@ export default function EditBrewery() {
                             />
                         </div>
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link  className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
+                        <Link  className="btn btn-outline-danger mx-2" to="/brewery">Cancel</Link>
                     </form>
 
                 </div>

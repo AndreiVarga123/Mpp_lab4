@@ -75,8 +75,4 @@ public class BeerService implements Service<Beer> {
         return repo.findAll();
     }
 
-    public GoodBeerDTO findById(Long id){
-        return GoodBeerDTO.toDTO(repo.findById(id).get());
-    }
-
 }
