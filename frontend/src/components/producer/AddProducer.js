@@ -21,11 +21,6 @@ export default function AddProducer() {
     const onInputChange = (e) => {
         setProducer({ ...producer, [e.target.name]: e.target.value });
     };
-
-    useEffect(() => {
-        loadProducer();
-    }, []);
-
     const onSubmit =async (e) => {
         e.preventDefault();
         await axios.post("api/producers",prodducer);
