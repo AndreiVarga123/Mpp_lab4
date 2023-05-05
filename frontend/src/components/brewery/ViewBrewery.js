@@ -62,7 +62,7 @@ export default function ViewBrewery() {
                                     <b>Beers:</b>
                                     {brewery.beerBreweries?.map(beerBrewery => (
                                         <div>
-                                            <br/>Brewery {beerBrewery?.brewery.id}<br/>
+                                            <br/>Brewery {beerBrewery?.beer.id}<br/>
                                             Quantity: {beerBrewery?.quantity}<br/>
                                             Tested: {beerBrewery?.tested.toString()}
                                         </div>
