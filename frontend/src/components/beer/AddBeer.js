@@ -11,15 +11,6 @@ export default function AddBeer(){
     const [autocompleteId,setAutocompleteId] = useState(0);
 
     const [producers, setProducers] = useState([]);
-    const [producer,setProducer] = useState({
-        id:0,
-        name:"",
-        country:"",
-        founding_year:0,
-        descr:"",
-        nrOfBreweries:0,
-        beers:[]
-    });
 
     const [beer,setBeer] = useState({
             name:"",
@@ -54,8 +45,7 @@ export default function AddBeer(){
     const producerSelect = async(e) => {
         setAutocompleteId(e.target.value);
         const result = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
-        setProducer({...beer,[e.target.name]:e.target.value});
-        beer.prod = producer;
+        beer.prod = result;
     }
 
     return(
@@ -85,7 +75,7 @@ export default function AddBeer(){
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
-                                onChange={(e)=>onAutoCompleteInputChange()}
+                                onChange={(e)=>onAutoCompleteInputChange(e)}
                             />
                             <select onSelect={(e)=>producerSelect(e)}>
                                 {producers?.map(pr => (
@@ -93,6 +83,14 @@ export default function AddBeer(){
                                 ))}
                             </select>
                         </div>
+
+                        <div className="mb-3">
+                            <label>Producer</label>
+                            <input className="form-control" type="text"
+                                   data-url="myurl"
+                                   autoComplete="off"/>
+                        </div>
+
 
                         <div className="mb-3">
                             <label>Color</label>
