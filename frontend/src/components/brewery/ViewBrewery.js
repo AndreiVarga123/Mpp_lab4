@@ -60,7 +60,7 @@ export default function ViewBrewery() {
                                 </li>
                                 <li className="list-group-item">
                                     <b>Beers:</b>
-                                    {beer.beerBreweries?.map(beerBrewery => (
+                                    {brewery.beerBreweries?.map(beerBrewery => (
                                         <div>
                                             <br/>Brewery {beerBrewery?.brewery.id}<br/>
                                             Quantity: {beerBrewery?.quantity}<br/>
