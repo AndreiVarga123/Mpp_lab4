@@ -8,9 +8,9 @@ export default function AddBeer(){
     let navigate=useNavigate();
 
     const [autocompleteInput,setAutocompleteInput] = useState("");
+    const [autocompleteId,setAutocompleteId] = useState(0);
 
     const [producers, setProducers] = useState([]);
-
     const [producer,setProducer] = useState({
         id:0,
         name:"",
@@ -24,6 +24,7 @@ export default function AddBeer(){
     const [beer,setBeer] = useState({
             name:"",
             color:"",
+            prod:null,
             alcoholLvl:0,
             price:0,
             packaging:""
@@ -33,7 +34,12 @@ export default function AddBeer(){
 
     const onInputChange=(e)=>{
         setBeer({...beer,[e.target.name]:e.target.value});
-        setProducer();
+    };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:80/beers",beer);
+        navigate("/beer");
     };
 
     const onAutoCompleteInputChange = async(e) => {
@@ -45,11 +51,12 @@ export default function AddBeer(){
         setProducers(result.data);
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await axios.post("http://localhost:80/beers",beer);
-        navigate("/beer");
-    };
+    const producerSelect = async(e) => {
+        setAutocompleteId(e.target.value);
+        const result = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
+        setProducer({...beer,[e.target.name]:e.target.value});
+        beer.prod = producer;
+    }
 
     return(
         <div className="container">
@@ -80,6 +87,11 @@ export default function AddBeer(){
                                 value={autocompleteInput}
                                 onChange={(e)=>onAutoCompleteInputChange()}
                             />
+                            <select onSelect={(e)=>producerSelect(e)}>
+                                {producers?.map(pr => (
+                                    <option>pr.name [pr.id]</option>
+                                ))}
+                            </select>
                         </div>
 
                         <div className="mb-3">
