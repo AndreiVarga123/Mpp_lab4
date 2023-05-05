@@ -7,6 +7,20 @@ export default function AddBeer(){
 
     let navigate=useNavigate();
 
+    const [autocompleteInput,setAutocompleteInput] = useState("");
+
+    const [producers, setProducers] = useState([]);
+
+    const [producer,setProducer] = useState({
+        id:0,
+        name:"",
+        country:"",
+        founding_year:0,
+        descr:"",
+        nrOfBreweries:0,
+        beers:[]
+    });
+
     const [beer,setBeer] = useState({
             name:"",
             color:"",
@@ -19,7 +33,17 @@ export default function AddBeer(){
 
     const onInputChange=(e)=>{
         setBeer({...beer,[e.target.name]:e.target.value});
+        setProducer();
     };
+
+    const onAutoCompleteInputChange = async(e) => {
+        setAutocompleteInput(e.target.value);
+        const result = await axios.post("http://localhost:80/producers/autocomplete",autocompleteInput, {
+            headers: {
+                'Content-Type': 'application/json'
+            }});
+        setProducers(result.data);
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -45,6 +69,19 @@ export default function AddBeer(){
                                 onChange={(e)=>onInputChange(e)}
                             />
                         </div>
+
+                        <div className="mb-3">
+                            <label>Producer</label>
+                            <input
+                                type = {"text"}
+                                className={"dropdown"}
+                                placeholder={"Enter Producer"}
+                                name={"autocompleteInput"}
+                                value={autocompleteInput}
+                                onChange={(e)=>onAutoCompleteInputChange()}
+                            />
+                        </div>
+
                         <div className="mb-3">
                             <label>Color</label>
                             <input

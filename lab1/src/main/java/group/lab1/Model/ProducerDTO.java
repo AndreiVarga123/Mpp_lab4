@@ -79,4 +79,5 @@ public class ProducerDTO {
     static public ProducerDTO toDTO(Producer producer){
         return new ProducerDTO(producer.getId(),producer.getName(),producer.getCountry(), producer.getFounding_year(), producer.getDescr(), producer.getNrOfBreweries(), producer.getBeers().size());
     }
+
 }

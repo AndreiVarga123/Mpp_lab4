@@ -152,6 +152,9 @@ public class BeerControllerJson {
         producerService.delete(id);
     }
 
+    @PostMapping("/producers/autocomplete")
+    public void autocompleteProducer(@RequestBody String userInput){producerService.listProducerAutocomplete(userInput);}
+
     @GetMapping("/beer_breweries")
     public List<Long> listBeerBreweries(@RequestBody Long page){
         return beerBreweryService.getAll(page);

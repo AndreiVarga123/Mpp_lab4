@@ -4,6 +4,7 @@ package group.lab1.Service;
 import group.lab1.Model.Producer;
 import group.lab1.Model.ProducerDTO;
 import group.lab1.Repo.ProducerRepo;
+import jakarta.persistence.Tuple;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +46,9 @@ public class ProducerService implements Service<Producer> {
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    public List<Tuple> listProducerAutocomplete(String userInput){
+        return repo.getNameAndId(userInput);
     }
 }
