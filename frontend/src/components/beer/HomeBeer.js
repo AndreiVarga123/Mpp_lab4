@@ -29,7 +29,7 @@ export default function HomeBeer() {
     };
 
     const loadBeers = async () => {
-        const result = await axios.post("api/beers/filter",[pageNr,filterNr], {
+        const result = await axios.post("http://localhost:80/beers/filter",[pageNr,filterNr], {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -40,7 +40,7 @@ export default function HomeBeer() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`api/beers/${id}`);
+        await axios.delete(`http://localhost:80/beers/${id}`);
         loadBeers();
     }
 

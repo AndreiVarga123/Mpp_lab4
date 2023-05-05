@@ -23,7 +23,7 @@ export default function AddBeer(){
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("api/beers",beer);
+        await axios.post("http://localhost:80/beers",beer);
         navigate("/beer");
     };
 
