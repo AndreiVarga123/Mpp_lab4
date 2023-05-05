@@ -81,7 +81,7 @@ export default function AddBeer(){
                             <label>Producer</label>
                             <input
                                 type = {"text"}
-                                className={"dropdown"}
+                                className={"form-control"}
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
