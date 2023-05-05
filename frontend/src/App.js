@@ -25,7 +25,7 @@ function App() {
                   <Route exact path="/viewBeer/:id" element={<ViewBeer/>}/>
 
                   <Route exact path="/Producer" element={<HomeProducer/>} />
-                  {/*<Route exact path="/addProducer" element={<AddProducer/>} />*/}
+                  <Route exact path="/addProducer" element={<AddProducer/>} />
                   <Route exact path="/editProducer/:id" element={<EditProducer/>}/>
                   <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
               </Routes>
