@@ -62,7 +62,7 @@ export default function ViewProducer() {
                                     <b>Beer:</b>
                                     {producer.beers?.map(beer => (
                                         <div>
-                                            <br/>Beer {beer?.beer.id}<br/>
+                                            <br/>Beer {beer?.id}<br/>
                                             Name: {beer?.name}<br/>
                                         </div>
                                     ))}
