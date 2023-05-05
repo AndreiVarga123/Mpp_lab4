@@ -78,20 +78,11 @@ export default function AddBeer(){
                                 onChange={(e)=>onAutoCompleteInputChange(e)}
                             />
                             <select onSelect={(e)=>producerSelect(e)}>
-                                {producers?.map(pr => (
-                                    <option>pr.name [pr.id]</option>
+                                {producers.map(producer => (
+                                    <option><br/>Brewery {producer?.id} [{producer?.name}]</option>
                                 ))}
                             </select>
                         </div>
-
-                        <div className="mb-3">
-                            <label>Producer</label>
-                            <input className="form-control" type="text"
-                                   data-url="myurl"
-                                   autoComplete="off"/>
-                        </div>
-
-
                         <div className="mb-3">
                             <label>Color</label>
                             <input
