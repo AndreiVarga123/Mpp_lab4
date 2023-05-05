@@ -93,7 +93,7 @@ export default function EditProducer() {
                             <input
                                 type = {"number"}
                                 className={"form-control"}
-                                placeholder={"Enter number of breweries"}
+                                placeholder={"Enter number of brewery"}
                                 name={"nrOfBreweries"}
                                 value={nrOfBreweries}
                                 onChange={(e)=>onInputChange(e)}

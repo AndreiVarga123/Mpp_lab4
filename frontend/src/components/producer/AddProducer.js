@@ -83,14 +83,14 @@ export default function AddProducer() {
                             <input
                                 type = {"number"}
                                 className={"form-control"}
-                                placeholder={"Enter number of breweries"}
+                                placeholder={"Enter number of brewery"}
                                 name={"nrOfBreweries"}
                                 value={nrOfBreweries}
                                 onChange={(e)=>onInputChange(e)}
                             />
                         </div>
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
-                        <Link  className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
+                        <Link  className="btn btn-outline-danger mx-2" to="/producer">Cancel</Link>
                     </form>
 
                 </div>

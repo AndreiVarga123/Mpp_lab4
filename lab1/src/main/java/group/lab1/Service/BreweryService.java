@@ -1,6 +1,7 @@
 package group.lab1.Service;
 
 import group.lab1.Model.Brewery;
+import group.lab1.Model.BreweryDTO;
 import group.lab1.Repo.BreweryRepo;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class BreweryService implements Service<Brewery>{
     @Override
     public List<Long> getAll(Long page) {
         return repo.findByPage(page).stream().map(brewery -> brewery.getId()).collect(Collectors.toList());
+    }
+
+    public List<BreweryDTO> getAllDTO(Long page){
+        return repo.findByPage(page).stream().map(BreweryDTO::toDTO).collect(Collectors.toList());
     }
 
     @Override
