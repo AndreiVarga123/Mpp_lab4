@@ -24,7 +24,7 @@ export default function AddProducer() {
     const onSubmit =async (e) => {
         e.preventDefault();
         await axios.post("api/producers",producer);
-        navigate("/producers");
+        navigate("/producer");
     };
 
     return (

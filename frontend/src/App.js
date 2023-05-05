@@ -20,12 +20,12 @@ function App() {
           <Router>
               <Navbar/>
               <Routes>
-                  <Route exact path="/Beer" element={<HomeBeer/>} />
+                  <Route exact path="/beer" element={<HomeBeer/>} />
                   <Route exact path="/addBeer" element={<AddBeer/>} />
                   <Route exact path="/editBeer/:id" element={<EditBeer/>}/>
                   <Route exact path="/viewBeer/:id" element={<ViewBeer/>}/>
 
-                  <Route exact path="/Producer" element={<HomeProducer/>} />
+                  <Route exact path="/producer" element={<HomeProducer/>} />
                   <Route exact path="/addProducer" element={<AddProducer/>} />
                   <Route exact path="/editProducer/:id" element={<EditProducer/>}/>
                   <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
