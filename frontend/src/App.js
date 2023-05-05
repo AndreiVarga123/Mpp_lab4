@@ -13,6 +13,7 @@ import HomeProducer from "./components/producer/HomeProducer";
 import ViewProducer from "./components/producer/ViewProducer";
 import EditProducer from "./components/producer/EditProducer";
 import AddProducer from "./components/producer/AddProducer";
+import HomeBrewery from "./components/brewery/HomeBrewery";
 
 function App() {
   return (
@@ -29,6 +30,11 @@ function App() {
                   <Route exact path="/addProducer" element={<AddProducer/>} />
                   <Route exact path="/editProducer/:id" element={<EditProducer/>}/>
                   <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
+
+                  <Route exact path="/brewery" element={<HomeBrewery/>} />
+                  {/*<Route exact path="/addProducer" element={<AddProducer/>} />*/}
+                  {/*<Route exact path="/editProducer/:id" element={<EditProducer/>}/>*/}
+                  {/*<Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>*/}
               </Routes>
           </Router>
       </div>

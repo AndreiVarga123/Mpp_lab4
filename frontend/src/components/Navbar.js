@@ -6,7 +6,7 @@ export default function Navbar(){
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/Beer">Beer List</Link>
+                    <Link className="navbar-brand" to="/beer">Beer List</Link>
                     <Link className="btn btn-outline-light" to="/addBeer">Add Beer</Link>
                     {/*<button className="navbar-toggler" type="button" data-bs-toggle="collapse"*/}
                     {/*        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"*/}
@@ -14,8 +14,11 @@ export default function Navbar(){
                     {/*    <span className="navbar-toggler-icon"></span>*/}
                     {/*</button>*/}
 
-                    <Link className="navbar-brand" to="/Producer">Producer List</Link>
+                    <Link className="navbar-brand" to="/producer">Producer List</Link>
                     <Link className="btn btn-outline-light" to="/addProducer">Add Producer</Link>
+
+                    <Link className="navbar-brand" to="/brewery">Brewery List</Link>
+                    {/*<Link className="btn btn-outline-light" to="/addProducer">Add Producer</Link>*/}
                 </div>
             </nav>
         </div>
