@@ -24,7 +24,7 @@ export default function AddBeer(){
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("api/beers",beer);
-        navigate("/");
+        navigate("/beers");
     };
 
     return(
