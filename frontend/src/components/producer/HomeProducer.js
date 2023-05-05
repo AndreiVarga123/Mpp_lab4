@@ -12,7 +12,7 @@ export default function HomeProducer() {
 
 
     const loadProducers = async () => {
-        const result = await axios.post("api/producers/dto",pageNr, {
+        const result = await axios.post("http://localhost:80/producers/dto",pageNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -20,7 +20,7 @@ export default function HomeProducer() {
     };
 
     const deleteProducer = async (id) => {
-        await axios.delete(`api/producers/${id}`);
+        await axios.delete(`http://localhost:80/producers/${id}`);
         loadProducers();
     }
 

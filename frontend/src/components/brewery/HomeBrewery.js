@@ -12,7 +12,7 @@ export default function HomeBrewery() {
 
 
     const loadBreweries = async () => {
-        const result = await axios.post("api/breweries/dto",pageNr, {
+        const result = await axios.post("http://localhost:80/breweries/dto",pageNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -20,7 +20,7 @@ export default function HomeBrewery() {
     };
 
     const deleteBrewery = async (id) => {
-        await axios.delete(`api/breweries/${id}`);
+        await axios.delete(`http://localhost:80/breweries/${id}`);
         loadBreweries();
     }
 
