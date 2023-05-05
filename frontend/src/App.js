@@ -12,6 +12,7 @@ import ViewBeer from "./components/beer/ViewBeer";
 import HomeProducer from "./components/producer/HomeProducer";
 import ViewProducer from "./components/producer/ViewProducer";
 import EditProducer from "./components/producer/EditProducer";
+import AddProducer from "./components/producer/AddProducer";
 
 function App() {
   return (
