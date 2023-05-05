@@ -82,7 +82,7 @@ public class BeerControllerJson {
         return breweryService.getAll(page);
     }
 
-    @GetMapping("/breweries/dto")
+    @PostMapping("/breweries/dto")
     public List<BreweryDTO> listBreweriesDTO(@RequestBody Long page){return breweryService.getAllDTO(page);}
 
     @GetMapping("/breweries/{id}")
