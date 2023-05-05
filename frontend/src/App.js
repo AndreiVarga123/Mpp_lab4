@@ -32,9 +32,9 @@ function App() {
                   <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
 
                   <Route exact path="/brewery" element={<HomeBrewery/>} />
-                  {/*<Route exact path="/addProducer" element={<AddProducer/>} />*/}
-                  {/*<Route exact path="/editProducer/:id" element={<EditProducer/>}/>*/}
-                  {/*<Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>*/}
+                  <Route exact path="/addProducer" element={<AddProducer/>} />
+                  <Route exact path="/editProducer/:id" element={<EditProducer/>}/>
+                  <Route exact path="/viewProducer/:id" element={<ViewProducer/>}/>
               </Routes>
           </Router>
       </div>

@@ -2,7 +2,6 @@ package group.lab1.Service;
 
 import group.lab1.Model.Beer;
 import group.lab1.Model.BeerDTO;
-import group.lab1.Model.GoodBeerDTO;
 import group.lab1.Repo.BeerRepo;
 
 import java.util.Comparator;

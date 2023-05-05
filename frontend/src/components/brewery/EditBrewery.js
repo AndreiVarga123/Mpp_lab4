@@ -23,11 +23,20 @@ export default function EditBrewery() {
         setBrewery({ ...brewery, [e.target.name]: e.target.value });
     };
 
+    useEffect(() => {
+        loadBrewery();
+    }, []);
+
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:80/breweries/${id}`, brewery);
+        await axios.post(`http://localhost:80/breweries`, brewery);
         navigate("/");
     };
+
+    const loadBrewery = async () => {
+        const result = await axios.get(`http://localhost:80/breweries/${id}`);
+        setBrewery(result.data);
+    }
 
     return (
         <div className="container">

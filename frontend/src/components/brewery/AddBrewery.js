@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-export default function EditBrewery() {
+export default function AddBrewery() {
 
     let navigate = useNavigate();
 
@@ -23,20 +23,11 @@ export default function EditBrewery() {
         setBrewery({ ...brewery, [e.target.name]: e.target.value });
     };
 
-    useEffect(() => {
-        loadBrewery();
-    }, []);
-
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.post(`http://localhost:80/breweries`, brewery);
+        await axios.put(`http://localhost:80/breweries/${id}`, brewery);
         navigate("/");
     };
-
-    const loadBrewery = async () => {
-        const result = await axios.get(`http://localhost:80/breweries/${id}`);
-        setBrewery(result.data);
-    }
 
     return (
         <div className="container">
