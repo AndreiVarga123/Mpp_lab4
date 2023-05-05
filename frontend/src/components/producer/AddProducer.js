@@ -31,7 +31,7 @@ export default function AddProducer() {
         <div className="container">
             <div className="row">
                 <div className="col-md-6 shadow offset-md-3 border rounded mx-auto p-4 mt-2">
-                    <h2 className="text-center m-4">Edit Beer</h2>
+                    <h2 className="text-center m-4">Add Producer</h2>
 
                     <form onSubmit={(e)=>onSubmit(e)}>
                         <div className="mb-3">
@@ -70,7 +70,7 @@ export default function AddProducer() {
                         <div className="mb-3">
                             <label>Description</label>
                             <input
-                                type = {"number"}
+                                type = {"text"}
                                 className={"form-control"}
                                 placeholder={"Enter description"}
                                 name={"descr"}
@@ -81,7 +81,7 @@ export default function AddProducer() {
                         <div className="mb-3">
                             <label>Number of breweries</label>
                             <input
-                                type = {"text"}
+                                type = {"number"}
                                 className={"form-control"}
                                 placeholder={"Enter number of breweries"}
                                 name={"nrOfBreweries"}
