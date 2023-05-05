@@ -18,7 +18,7 @@ export default function Navbar(){
                     <Link className="btn btn-outline-light" to="/addProducer">Add Producer</Link>
 
                     <Link className="navbar-brand" to="/brewery">Brewery List</Link>
-                    <Link className="btn btn-outline-light" to="/addProducer">Add Producer</Link>
+                    <Link className="btn btn-outline-light" to="/addBrewery">Add Brewery</Link>
                 </div>
             </nav>
         </div>
