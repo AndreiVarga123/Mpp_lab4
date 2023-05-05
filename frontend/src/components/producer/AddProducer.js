@@ -23,7 +23,7 @@ export default function AddProducer() {
     };
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.post("api/producers",prodducer);
+        await axios.post("api/producers",producer);
         navigate("/producers");
     };
 
