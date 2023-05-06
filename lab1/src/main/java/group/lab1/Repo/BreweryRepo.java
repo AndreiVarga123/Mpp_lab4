@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BreweryRepo extends JpaRepository<Brewery,Long> {
-    @Query(value="SELECT b FROM Brewery b  WHERE b.id>=?1 AND b.id<=?1+99")
+    @Query(value="SELECT b FROM Brewery b WHERE b.id>=?1 AND b.id<=?1+99")
     List<Brewery> findByPage(Long page);
 
     @Query(value="SELECT COUNT(b.id) FROM BeerBrewery b WHERE b.brewery.id=?1")

@@ -65,7 +65,7 @@ export default function AddBeer(){
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="mb-3 form-group">
                             <label>Producer</label>
                             <input
                                 type = {"text"}
