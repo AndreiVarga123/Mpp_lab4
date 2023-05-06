@@ -80,7 +80,7 @@ export default function AddBeer(){
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
-                                onChange={(e)=>onAutoCompleteInputChange(e)}
+                                onInput={(e)=>onAutoCompleteInputChange(e)}
                                 list={"producers"}
                             />
                             <datalist id={"producers"} /*onSelect={(e)=>producerSelect(e)}*/>
