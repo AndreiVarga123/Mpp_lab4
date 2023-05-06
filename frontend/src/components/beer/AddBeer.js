@@ -33,7 +33,7 @@ export default function AddBeer(){
     };
 
     const onAutoCompleteInputChange = async(e) => {
-        setAutocompleteInput(e.target.value);
+        await setAutocompleteInput(e.target.value);
         if(autocompleteInput!=="") {
             console.log(autocompleteInput);
             const result = await axios.post("http://localhost:80/producers/autocomplete", autocompleteInput, {
@@ -80,7 +80,7 @@ export default function AddBeer(){
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
-                                onChangeCapture={(e)=>onAutoCompleteInputChange(e)}
+                                onChange={(e)=>onAutoCompleteInputChange(e)}
                                 list={"producers"}
                             />
                             <datalist id={"producers"} /*onSelect={(e)=>producerSelect(e)}*/>
