@@ -34,10 +34,12 @@ export default function AddBeer(){
 
     const onAutoCompleteInputChange = async(e) => {
         setAutocompleteInput(e.target.value);
+        console.log(autocompleteInput);
         const result = await axios.post("http://localhost:80/producers/autocomplete",autocompleteInput, {
             headers: {
                 'Content-Type': 'application/json'
             }});
+        console.log(result);
         setProducers(result.data);
     }
 
