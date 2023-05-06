@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function AddBeer(){
 
@@ -44,8 +43,7 @@ export default function AddBeer(){
 
     const producerSelect = async(e) => {
         setAutocompleteId(e.target.value);
-        const result = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
-        beer.prod = result;
+        beer.prod = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
     }
 
     return(
@@ -67,7 +65,7 @@ export default function AddBeer(){
                             />
                         </div>
 
-                        <div className="mb-3">
+                        <div className="form-group">
                             <label>Producer</label>
                             <input
                                 type = {"text"}
@@ -77,12 +75,13 @@ export default function AddBeer(){
                                 value={autocompleteInput}
                                 onChange={(e)=>onAutoCompleteInputChange(e)}
                             />
-                            <select onSelect={(e)=>producerSelect(e)}>
+                            <datalist onSelect={(e)=>producerSelect(e)}>
                                 {producers.map(producer => (
                                     <option><br/>Brewery {producer?.id} [{producer?.name}]</option>
                                 ))}
-                            </select>
+                            </datalist>
                         </div>
+
                         <div className="mb-3">
                             <label>Color</label>
                             <input

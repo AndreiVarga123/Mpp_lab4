@@ -6,6 +6,7 @@ import jakarta.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 
@@ -16,6 +17,6 @@ public interface ProducerRepo extends JpaRepository<Producer,Long> {
     @Query(value="SELECT COUNT(b.id) FROM Beer b WHERE b.producer.id=?1")
     Integer findNrOfBeers(Long id);
 
-    @Query(value="SELECT p.id,p.name FROM Producer p WHERE p.name LIKE %:input% LIMIT 100")
+    @Query(value="SELECT p.id,p.name FROM producers p WHERE p.name LIKE %:input% LIMIT 100",nativeQuery = true)
     List<Tuple> getNameAndId(@Param("input") String userInput);
 }

@@ -153,7 +153,7 @@ public class BeerControllerJson {
     }
 
     @PostMapping("/producers/autocomplete")
-    public void autocompleteProducer(@RequestBody String userInput){producerService.listProducerAutocomplete(userInput);}
+    public List<SmallBeerDTO> autocompleteProducer(@RequestBody String userInput){return producerService.listProducerAutocomplete(userInput);}
 
     @GetMapping("/beer_breweries")
     public List<Long> listBeerBreweries(@RequestBody Long page){

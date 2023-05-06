@@ -3,8 +3,10 @@ package group.lab1.Service;
 
 import group.lab1.Model.Producer;
 import group.lab1.Model.ProducerDTO;
+import group.lab1.Model.SmallBeerDTO;
 import group.lab1.Repo.ProducerRepo;
 import jakarta.persistence.Tuple;
+import org.springframework.data.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +50,7 @@ public class ProducerService implements Service<Producer> {
         repo.deleteById(id);
     }
 
-    public List<Tuple> listProducerAutocomplete(String userInput){
-        return repo.getNameAndId(userInput);
+    public List<SmallBeerDTO> listProducerAutocomplete(String userInput){
+        return repo.getNameAndId(userInput).stream().map(producer->new SmallBeerDTO(producer.get(0,Long.class),producer.get(1, String.class))).collect(Collectors.toList());
     }
 }
