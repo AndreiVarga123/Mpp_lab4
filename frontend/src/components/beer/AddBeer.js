@@ -74,19 +74,21 @@ export default function AddBeer(){
                         <div className="mb-3 form-group">
                             <label>Producer</label>
                             <input
+                                id = {"dataList"}
                                 type = {"text"}
                                 className={"form-control"}
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
                                 onChange={(e)=>onAutoCompleteInputChange(e)}
+                                list={"producers"}
                             />
-                            <select onSelect={(e)=>producerSelect(e)}>
+                            <datalist id={"producers"} /*onSelect={(e)=>producerSelect(e)}*/>
                                 <option>Test option</option>
                                 {producers.map(producer => (
                                     <option>Brewery {producer?.id} [{producer?.name}]</option>
                                 ))}
-                            </select>
+                            </datalist>
                         </div>
 
                         <div className="mb-3">
