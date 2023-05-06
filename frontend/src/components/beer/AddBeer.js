@@ -33,7 +33,7 @@ export default function AddBeer(){
     };
 
     const onAutoCompleteInputChange = async(e) => {
-        setAutocompleteInput(e.target.value.trimStart().trimEnd());
+        setAutocompleteInput(e.target.value);
         console.log(autocompleteInput)
         if(autocompleteInput!=="") {
             const result = await axios.post("http://localhost:80/producers/autocomplete", autocompleteInput, {
@@ -86,7 +86,7 @@ export default function AddBeer(){
                             <datalist id={"producers"} /*onSelect={(e)=>producerSelect(e)}*/>
                                 <option>Test option</option>
                                 {producers.map(producer => (
-                                    <option>Brewery {producer?.id} [{producer?.name}]</option>
+                                    <option>Brewery {producer?.id}: {producer?.name}</option>
                                 ))}
                             </datalist>
                         </div>
