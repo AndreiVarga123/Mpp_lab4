@@ -34,18 +34,21 @@ export default function AddBeer(){
 
     const onAutoCompleteInputChange = async(e) => {
         setAutocompleteInput(e.target.value);
-        console.log(autocompleteInput);
-        const result = await axios.post("http://localhost:80/producers/autocomplete",autocompleteInput, {
-            headers: {
-                'Content-Type': 'application/json'
-            }});
-        console.log(result);
-        setProducers(result.data);
+        if(autocompleteInput!==" ") {
+            const result = await axios.post("http://localhost:80/producers/autocomplete", autocompleteInput, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log(result);
+            setProducers(result.data);
+        }
     }
 
     const producerSelect = async(e) => {
         setAutocompleteId(e.target.value);
         beer.prod = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
+        console.log(beer);
     }
 
     return(
@@ -79,7 +82,7 @@ export default function AddBeer(){
                             />
                             <datalist onSelect={(e)=>producerSelect(e)}>
                                 {producers.map(producer => (
-                                    <option><br/>Brewery {producer?.id} [{producer?.name}]</option>
+                                    <option>Brewery {producer?.id} [{producer?.name}]</option>
                                 ))}
                             </datalist>
                         </div>

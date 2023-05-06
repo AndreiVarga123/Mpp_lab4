@@ -51,6 +51,7 @@ public class ProducerService implements Service<Producer> {
     }
 
     public List<SmallBeerDTO> listProducerAutocomplete(String userInput){
+        userInput = userInput.replace("\"","");
         return repo.getNameAndId(userInput).stream().map(producer->new SmallBeerDTO(producer.get(0,Long.class),producer.get(1, String.class))).collect(Collectors.toList());
     }
 }
