@@ -19,6 +19,9 @@ export default function Navbar(){
 
                     <Link className="navbar-brand" to="/brewery">Brewery List</Link>
                     <Link className="btn btn-outline-light" to="/addBrewery">Add Brewery</Link>
+
+                    <Link className="navbar-brand" to="/beerBrewery">BeerBrewery List</Link>
+                    <Link className="btn btn-outline-light" to="/addBeerBrewery">Add BeerBrewery</Link>
                 </div>
             </nav>
         </div>

@@ -1,17 +1,19 @@
 package group.lab1.Controller;
 
 import group.lab1.Model.*;
-import group.lab1.Service.BeerBreweryService;
-import group.lab1.Service.BeerService;
-import group.lab1.Service.BreweryService;
-import group.lab1.Service.ProducerService;
+import group.lab1.Service.*;
 import group.lab1.Validator.BeerValidator;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebInputException;
 
+import java.rmi.ServerException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @CrossOrigin
@@ -23,11 +25,14 @@ public class BeerControllerJson {
     private BeerBreweryService beerBreweryService;
     private BeerValidator beerValidator;
 
-    public BeerControllerJson(BeerService beerService, BreweryService breweryService, ProducerService producerService, BeerBreweryService beerBreweryService) {
+    private LoginService loginService;
+
+    public BeerControllerJson(BeerService beerService, BreweryService breweryService, ProducerService producerService, BeerBreweryService beerBreweryService, LoginService loginService) {
         this.beerService = beerService;
         this.breweryService = breweryService;
         this.producerService = producerService;
         this.beerBreweryService = beerBreweryService;
+        this.loginService = loginService;
         this.beerValidator = new BeerValidator();
     }
 
@@ -49,7 +54,7 @@ public class BeerControllerJson {
             return beerService.save(beer);
         }
         catch (ServerWebInputException e) {
-            return e.getMessage();
+            return e.getReason();
         }
     }
 
@@ -112,6 +117,7 @@ public class BeerControllerJson {
         breweryService.delete(id);
     }
 
+
     @PostMapping(value="/beers/filter", consumes = "application/json")
     public List<BeerDTO> filter(@RequestBody List<Long> pageAndFilterNr){
         return beerService.filter(pageAndFilterNr);
@@ -153,7 +159,7 @@ public class BeerControllerJson {
     }
 
     @PostMapping("/producers/autocomplete")
-    public List<SmallBeerDTO> autocompleteProducer(@RequestBody String userInput){return producerService.listProducerAutocomplete(userInput);}
+    public List<AutocompleteDTO> autocompleteProducer(@RequestBody String userInput){return producerService.listProducerAutocomplete(userInput);}
 
     @GetMapping("/beer_breweries")
     public List<Long> listBeerBreweries(@RequestBody Long page){
@@ -184,13 +190,16 @@ public class BeerControllerJson {
         beerBreweryService.delete(id);
     }
 
-    @GetMapping("/beers/stats")
+    @PostMapping("/beer_breweries/dto")
+    public List<BeerBreweryDTO> listBeerBreweriesDTO(@RequestBody Long page){return beerBreweryService.getAllDTO(page);}
+
+    @PostMapping("/beers/stats")
     @ResponseBody
     public List<BeerDTO> getStatsByProdYear(@RequestBody Long page){
        return beerService.getStatsByFoundingYear(page);
     }
 
-    @GetMapping("/beers/stats2")
+    @PostMapping("/beers/stats2")
     @ResponseBody
     public List<BeerDTO> getStatsByProdNrOfBreweries(@RequestBody Long page){
         return beerService.getStatsByBreweryNr(page);
@@ -204,5 +213,54 @@ public class BeerControllerJson {
         newBeers.addAll(beers);
         oldProducer.setBeers(newBeers);
         return producerService.save(oldProducer);
+    }
+
+    @PostMapping("/beers/autocomplete")
+    public List<AutocompleteDTO> autocompleteBeer(@RequestBody String userInput){return beerService.listBeerAutocomplete(userInput);}
+
+    @PostMapping("/breweries/autocomplete")
+    public List<AutocompleteDTO> autocompleteBrewery(@RequestBody String userInput){return breweryService.listBreweryAutocomplete(userInput);}
+
+    @PostMapping("/register")
+    public List<String> registerUser(@RequestBody List<LinkedHashMap<String,String>> userAndProfile){
+        List<String> response = new ArrayList<>();
+        try {
+            User user = new User(userAndProfile.get(0).get("userName"),userAndProfile.get(0).get("password"),false,new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),null);
+            UserProfile profile = new UserProfile(userAndProfile.get(0).get("userName"),userAndProfile.get(1).get("email"),new SimpleDateFormat("yyyy-MM-dd").parse(userAndProfile.get(1).get("birthday")),userAndProfile.get(1).get("description"),userAndProfile.get(1).get("address"),user);
+            user.setUserProfile(profile);
+            response.add("good");
+            response.add(loginService.register(user,profile));
+            return response;
+        } catch (ServerException | ParseException e) {
+            response.clear();
+            response.add("bad");
+            response.add(e.getMessage());
+            return response;
+        }
+    }
+
+    @PostMapping("/register/{token}")
+    public String activateUser(@PathVariable String token){
+        try {
+            loginService.activateUser(token);
+            return "activated";
+        } catch (ServerException e) {
+            return e.getMessage();
+        }
+    }
+
+    @PostMapping("/login")
+    public List<String> loginUser(@RequestBody User user){
+        List<String> response = new ArrayList<>();
+        try {
+            response.add("good");
+            response.add(loginService.login(user));
+            return response;
+        } catch (ServerException e) {
+            response.clear();
+            response.add("bad");
+            response.add(e.getMessage());
+            return response;
+        }
     }
 }

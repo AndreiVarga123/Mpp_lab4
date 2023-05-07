@@ -25,8 +25,8 @@ export default function AddBrewery() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:80/breweries/${id}`, brewery);
-        navigate("/");
+        await axios.post(`http://localhost:80/breweries`, brewery);
+        navigate("/brewery");
     };
 
     return (

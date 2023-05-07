@@ -1,5 +1,6 @@
 package group.lab1.Service;
 
+import group.lab1.Model.AutocompleteDTO;
 import group.lab1.Model.Brewery;
 import group.lab1.Model.BreweryDTO;
 import group.lab1.Repo.BreweryRepo;
@@ -43,5 +44,10 @@ public class BreweryService implements Service<Brewery>{
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    public List<AutocompleteDTO> listBreweryAutocomplete(String userInput){
+        userInput = userInput.replace("\"","");
+        return repo.getNameAndId(userInput).stream().map(brewery->new AutocompleteDTO(brewery.get(0,Long.class),brewery.get(1, String.class))).collect(Collectors.toList());
     }
 }

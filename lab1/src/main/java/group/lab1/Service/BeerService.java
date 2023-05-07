@@ -1,5 +1,6 @@
 package group.lab1.Service;
 
+import group.lab1.Model.AutocompleteDTO;
 import group.lab1.Model.Beer;
 import group.lab1.Model.BeerDTO;
 import group.lab1.Repo.BeerRepo;
@@ -72,6 +73,11 @@ public class BeerService implements Service<Beer> {
 
     public List<Beer> getBeerDetails(){
         return repo.findAll();
+    }
+
+    public List<AutocompleteDTO> listBeerAutocomplete(String userInput){
+        userInput = userInput.replace("\"","");
+        return repo.getNameAndId(userInput).stream().map(beer->new AutocompleteDTO(beer.get(0,Long.class),beer.get(1, String.class))).collect(Collectors.toList());
     }
 
 }

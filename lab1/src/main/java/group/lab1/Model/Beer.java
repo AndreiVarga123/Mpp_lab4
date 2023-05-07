@@ -38,6 +38,11 @@ public class Beer {
     @JsonIgnoreProperties("beer")
     private List<BeerBrewery> beerBreweries;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_user_name")
+    @JsonIgnoreProperties("beers")
+    private User user;
+
     @Override
     public String toString() {
         return "Beer{" +
@@ -75,6 +80,15 @@ public class Beer {
 //    public void setBrewery(Brewery brewery) {
 //        this.brewery = brewery;
 //    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<BeerBrewery> getBeerBreweries() {
         return beerBreweries;

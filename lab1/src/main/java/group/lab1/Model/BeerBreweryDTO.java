@@ -1,6 +1,5 @@
 package group.lab1.Model;
 
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 
 public class BeerBreweryDTO {
@@ -11,13 +10,23 @@ public class BeerBreweryDTO {
     private Long brewery;
     private Integer quantity;
     private Boolean tested;
+    private String userName;
 
-    public BeerBreweryDTO(Long id, Long beer, Long brewery, Integer quantity, Boolean tested) {
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public BeerBreweryDTO(Long id, Long beer, Long brewery, Integer quantity, Boolean tested, String userName) {
         this.id = id;
         this.beer = beer;
         this.brewery = brewery;
         this.quantity = quantity;
         this.tested = tested;
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -61,6 +70,6 @@ public class BeerBreweryDTO {
     }
 
     static public BeerBreweryDTO toDTO(BeerBrewery beerBrewery){
-        return new BeerBreweryDTO(beerBrewery.getId(), beerBrewery.getBeer().getId(),beerBrewery.getBrewery().getId(),beerBrewery.getQuantity(),beerBrewery.getTested());
+        return new BeerBreweryDTO(beerBrewery.getId(), beerBrewery.getBeer().getId(),beerBrewery.getBrewery().getId(),beerBrewery.getQuantity(),beerBrewery.getTested(), beerBrewery.getUser().getUserName());
     }
 }

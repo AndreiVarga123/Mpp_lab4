@@ -8,7 +8,9 @@ import Button from "bootstrap/js/src/button";
 export default function HomeBeer() {
     const [beers, setBeers] = useState([]);
     const [filterNr,setFilterNr] = useState(0);
-    const [sorted,setSorted] = useState(false);
+    const [sortedByPrice,setSortedByPrice] = useState(false);
+    const [sortedByProdYear,setSortedByProdYear] = useState(false);
+    const [sortedByProdNrOfBreweries,setSortedByProdNrOfBreweries] = useState(false);
     const [pageNr,setPageNr] = useState(1);
 
     useEffect(() => {
@@ -29,14 +31,34 @@ export default function HomeBeer() {
     };
 
     const loadBeers = async () => {
-        const result = await axios.post("http://localhost:80/beers/filter",[pageNr,filterNr], {
-            headers: {
-                'Content-Type': 'application/json'
-            }});
-        if(sorted)
-            setBeers(result.data.sort((a,b)=>{return a.price>b.price?1:-1}));
-        else
+        if(sortedByProdYear){
+            const result = await axios.post("http://localhost:80/beers/stats",pageNr, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }});
             setBeers(result.data);
+        }
+        else if(sortedByProdNrOfBreweries){
+            const result = await axios.post("http://localhost:80/beers/stats2",pageNr, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }});
+
+            setBeers(result.data);
+        }
+        else{
+            const result = await axios.post("http://localhost:80/beers/filter",[pageNr,filterNr], {
+                headers: {
+                    'Content-Type': 'application/json'
+                }});
+            if(sortedByPrice) {
+                setBeers(result.data.sort((a, b) => {
+                    return a.price > b.price ? 1 : -1
+                }));
+            }
+            else
+                setBeers(result.data);
+        }
     };
 
     const deleteBeer = async (id) => {
@@ -44,20 +66,34 @@ export default function HomeBeer() {
         loadBeers();
     }
 
-    const onSort = () =>{
-        setSorted(true);
+    const onSortByPrice = () =>{
+        setSortedByPrice(true);
+        setSortedByProdYear(false)
+        setSortedByProdNrOfBreweries(false);
+    }
+
+    const onSortByProdYear = () =>{
+        setSortedByProdYear(true);
+        setSortedByPrice(false)
+        setSortedByProdNrOfBreweries(false);
+    }
+
+    const onSortByProdNrOfBreweries = () =>{
+        setSortedByProdNrOfBreweries(true);
+        setSortedByPrice(false)
+        setSortedByProdYear(false);
     }
 
     const nextPage = () =>{
         if(pageNr!==999901) {
-            setSorted(false);
+            setSortedByPrice(false);
             setPageNr(pageNr + 100);
         }
     }
 
     const prevPage = () =>{
         if(pageNr!==1) {
-            setSorted(false);
+            setSortedByPrice(false);
             setPageNr(pageNr - 100);
         }
     }
@@ -80,14 +116,18 @@ export default function HomeBeer() {
             </form>
             <div>
                 <div>
-                    <button className="btn btn-primary mx-2"  onClick={()=>onSort()}>Sort by price</button>
+                    <button className="btn btn-primary mx-2"  onClick={()=>onSortByPrice()}>Sort by price</button>
+                    <button className="btn btn-primary mx-2"  onClick={()=>onSortByProdYear()}>Stats by producer year</button>
+                    <button className="btn btn-primary mx-2"  onClick={()=>onSortByProdNrOfBreweries()}>Sort by producer number of breweries</button>
                 </div>
                 <table className="table border shadow">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Producer</th>
+                        <th scope="col">Producer Name</th>
+                        <th scope="col">Producer Founding Year</th>
+                        <th scope="col">Producer Number Of Breweries</th>
                         <th scope="col">Color</th>
                         <th scope="col">Alcohol Level</th>
                         <th scope="col">Price</th>
@@ -101,6 +141,8 @@ export default function HomeBeer() {
                             <td>{beer.id}</td>
                             <td>{beer.name}</td>
                             <td>{beer.prodName}</td>
+                            <td>{beer.prodYear}</td>
+                            <td>{beer.prodNrOfBreweries}</td>
                             <td>{beer.color}</td>
                             <td>{beer.alcoholLvl}</td>
                             <td>{beer.price}</td>

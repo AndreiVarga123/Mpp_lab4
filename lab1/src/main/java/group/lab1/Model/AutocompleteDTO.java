@@ -1,10 +1,10 @@
 package group.lab1.Model;
 
-public class SmallBeerDTO {
+public class AutocompleteDTO {
     private Long id;
     private String name;
 
-    public SmallBeerDTO(Long id, String name) {
+    public AutocompleteDTO(Long id, String name) {
         this.id = id;
         this.name = name;
     }

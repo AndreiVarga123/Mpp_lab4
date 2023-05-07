@@ -2,5 +2,5 @@
 <!--    <include file="classpath:db/changelog/version_1.xml"/>-->
 <!--    <include file="classpath:db/changelog/version_2.xml"/>-->
 <!--    <include file="classpath:db/changelog/version_3.xml"/>-->
-    <include file="classpath:db/changelog/version_4.xml"/>
+    <include file="classpath:db/changelog/version_6.xml"/>
 </databaseChangeLog>

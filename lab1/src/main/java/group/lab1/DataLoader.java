@@ -27,6 +27,7 @@ public class DataLoader {
 
     public void populateAll(){
         try {
+            populateUsers();
             populateProducers();
             populateBreweries();
             populateBeers();
@@ -42,6 +43,7 @@ public class DataLoader {
             deleteFr0mBeers();
             deleteFromBreweries();
             deleteFromProducers();
+            deleteFromUserss();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -188,6 +190,45 @@ public class DataLoader {
     public void deleteFromProducers() throws SQLException {
         stmt.execute("DELETE FROM producers");
         System.out.println("Deleted data in producers");
+    }
+
+    public void deleteFromUserss() throws SQLException {
+        stmt.execute("DELETE FROM users");
+        System.out.println("Deleted data from users");
+        stmt.execute("DELETE FROM users_profiles");
+        System.out.println("Deleted from user_profiles");
+    }
+
+    public void populateUsers() throws SQLException{
+
+
+        for(int i=0;i<9;i++){
+            String insertUsers = "INSERT INTO users(user_name,password,activated) VALUES"+"\n";
+            String insertUserProfiles = "INSERT INTO user_profiles(user_name,address,birthday,description,email) VALUES" +"\n";
+            StringBuilder batchUsers = new StringBuilder();
+            StringBuilder batchProfiles = new StringBuilder();
+
+            for(int j=1;j<=1000;j++){
+                String name = faker.name().firstName()+faker.name().lastName()+String.valueOf(i*1000+j);
+                name = name.replace("'","").toLowerCase();
+                String pass = faker.internet().password(10,15).replace("'","''");
+                String address = faker.address().streetAddress().replace("'","''");
+                String birthday = faker.date().birthday().toString();
+                String descritption = faker.lorem().sentence(3).replace("'","''");
+                String email = faker.internet().emailAddress().replace("'","''");
+                batchUsers.append("('").append(name).append("','").append(pass).append("',false").append("),").append("\n");
+                batchProfiles.append("('").append(name).append("','").append(address).append("','").append(birthday).append("','").append(descritption).append("','").append(email).append("'),").append("\n");
+            }
+
+            batchUsers.deleteCharAt(batchUsers.length()-2);
+            batchProfiles.deleteCharAt(batchProfiles.length()-2);
+
+            insertUsers+=batchUsers;
+            insertUserProfiles+=batchProfiles;
+            stmt.execute(insertUsers);
+            stmt.execute(insertUserProfiles);
+            System.out.println("Inserted "+ 1+(i * 1000) +" rows into users and user_profiles");
+        }
     }
 
 }

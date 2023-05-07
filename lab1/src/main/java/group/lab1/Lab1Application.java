@@ -1,9 +1,8 @@
 package group.lab1;
 
-import group.lab1.Repo.BeerBreweryRepo;
-import group.lab1.Repo.BeerRepo;
-import group.lab1.Repo.BreweryRepo;
-import group.lab1.Repo.ProducerRepo;
+import group.lab1.Model.UserProfile;
+import group.lab1.Repo.*;
+import group.lab1.Service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -51,11 +50,18 @@ public class Lab1Application implements CommandLineRunner {
 	private BeerBreweryRepo beerBreweryRepo;
 
 	@Autowired
+	private UserProfileRepo userProfileRepo;
+
+	@Autowired
+	private UserRepo userRepo;
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public void run(String... args) throws Exception {
-//		DataLoader dataLoader = new DataLoader(DB_URL,USER,PASS);
+		DataLoader dataLoader = new DataLoader(DB_URL,USER,PASS);
+		dataLoader.populateUsers();
 //		dataLoader.deleteAll();
 //		dataLoader.populateAll();
 	}

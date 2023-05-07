@@ -1,26 +1,35 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
+import {wait} from "@testing-library/user-event/dist/utils";
+import modal from "bootstrap/js/src/modal";
 
 export default function AddBeer(){
 
     let navigate=useNavigate();
 
     const [autocompleteInput,setAutocompleteInput] = useState("");
-    const [autocompleteId,setAutocompleteId] = useState(0);
+    const [keyInput,setKeyInput] = useState("");
+    const [inputFocused, setInputFocused] = useState(false);
+    const [errorList,setErrorList] = useState([]);
 
     const [producers, setProducers] = useState([]);
 
     const [beer,setBeer] = useState({
             name:"",
             color:"",
-            prod:null,
+            producer:null,
             alcoholLvl:0,
             price:0,
-            packaging:""
+            packaging:"",
+            beerBreweries:[]
         });
 
     const{name,color,alcoholLvl,price,packaging}=beer;
+
+    useEffect(() => {
+        loadProducers();
+    });
 
     const onInputChange=(e)=>{
         setBeer({...beer,[e.target.name]:e.target.value});
@@ -28,34 +37,77 @@ export default function AddBeer(){
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:80/beers",beer);
-        navigate("/beer");
+        const result = await axios.post("http://localhost:80/beers",beer);
+        console.log(result.data.toString())
+        if(!result.data.toString().includes("Object")){
+            setErrorList(result.data.replace('[','').replace(']','').split(","));
+            document.getElementById("dialogToggle").click();
+        }else{
+            navigate("/beer");
+        }
     };
 
-    const onAutoCompleteInputChange = async(e) => {
-        await setAutocompleteInput(e.target.value);
-        if(autocompleteInput!=="") {
-            console.log(autocompleteInput);
+    const loadProducers = async() =>{
+        if(autocompleteInput!=="" && inputFocused===true) {
             const result = await axios.post("http://localhost:80/producers/autocomplete", autocompleteInput, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(result);
             setProducers(result.data);
         }
     }
 
-    const producerSelect = async(e) => {
-        setAutocompleteId(e.target.value);
-        beer.prod = await axios.get(`http://localhost:80/producers/${autocompleteId}`);
-        console.log(beer);
+
+    const onAutoCompleteInputChange = async (e) => {
+        setAutocompleteInput(e.target.value);
     }
 
-    return(
+
+    const onSelect = async(e) =>{
+        setKeyInput(e.key);
+        console.log(keyInput);
+        console.log(autocompleteInput);
+    }
+
+    const setProducer = async () =>{
+        setInputFocused(false);
+        if(keyInput==="Unidentified") {
+            const inputIdAndName = autocompleteInput.split(":")
+            const inputId = inputIdAndName.at(0).charAt(inputIdAndName.at(0).length - 1)
+            const result = await axios.get(`http://localhost:80/producers/${inputId}`);
+            setBeer({...beer,producer:result.data});
+            console.log(beer);
+        }
+    }
+
+
+    const resultBig = (
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+
+                    <button id="dialogToggle" type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal " hidden={true}></button>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Please fix the following problems</h5>
+                                </div>
+                                <div className="modal-body">
+                                    {errorList?.map(error => (
+                                        <div>{error}</div>
+                                    ))}
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <h2 className="text-center m-4">Add Beer</h2>
 
                     <form onSubmit={(e)=>onSubmit(e)}>
@@ -74,17 +126,18 @@ export default function AddBeer(){
                         <div className="mb-3 form-group">
                             <label>Producer</label>
                             <input
-                                id = {"dataList"}
                                 type = {"text"}
                                 className={"form-control"}
                                 placeholder={"Enter Producer"}
                                 name={"autocompleteInput"}
                                 value={autocompleteInput}
-                                onChange={(e)=>onAutoCompleteInputChange(e)}
+                                onChange={(e) => onAutoCompleteInputChange(e)}
+                                onKeyDown={(e)=>onSelect(e)}
+                                onBlur={()=>setProducer()}
+                                onFocus={()=>setInputFocused(true)}
                                 list={"producers"}
                             />
-                            <datalist id={"producers"} /*onSelect={(e)=>producerSelect(e)}*/>
-                                <option>Test option</option>
+                            <datalist id={"producers"}>
                                 {producers.map(producer => (
                                     <option>Brewery {producer?.id}: {producer?.name}</option>
                                 ))}
@@ -135,11 +188,13 @@ export default function AddBeer(){
                                 onChange={(e)=>onInputChange(e)}
                             />
                         </div>
-                        <button type="submit" className="btn btn-outline-primary">Submit</button>
+                        <button type="submit" className="btn btn-outline-primary" >Submit</button>
                         <Link  className="btn btn-outline-danger mx-2" to="/beer">Cancel</Link>
                     </form>
                 </div>
             </div>
         </div>
     )
+
+    return resultBig;
 }

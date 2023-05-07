@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0" author="admin">
+    <createTable tableName="users">
+        <column name="userName" type="BIGINT">
+            <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+        </column>
+        <column name="email" type="VARCHAR(255)"></column>
+        <column name="birtday" type="TIMESTAMP(6)"></column>
+        <column name="description" type="VARCHAR(255)"></column>
+        <column name="address" type="VARCHAR(255)"></column>
+    </createTable>
+        <addColumn tableName="beers">
+            <column name="user_userName" type="VARCHAR(255)"></column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="beers" baseColumnNames="user_userName" constraintName="beers_user_foreign_key" referencedTableName="users"
+                                 referencedColumnNames="userName"></addForeignKeyConstraint>
+    </changeSet>
+</databaseChangeLog>

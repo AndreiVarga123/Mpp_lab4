@@ -34,6 +34,11 @@ public class Producer {
     @JsonIgnoreProperties("producer")
     private List<Beer> beers;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_user_name")
+    @JsonIgnoreProperties("producers")
+    private User user;
+
     public List<Beer> getBeers() {
         return beers;
     }
@@ -48,6 +53,14 @@ public class Producer {
         this.founding_year = founding_year;
         this.descr = descr;
         this.nrOfBreweries = nrOfBreweries;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

@@ -32,6 +32,11 @@ public class Brewery {
     @JsonIgnoreProperties("brewery")
     private List<BeerBrewery> beerBreweries;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_user_name")
+    @JsonIgnoreProperties("breweries")
+    private User user;
+
 
 
 //    @OneToMany(mappedBy = "brewery",cascade = CascadeType.ALL)
@@ -46,6 +51,14 @@ public class Brewery {
     }
 
     public Brewery() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<BeerBrewery> getBeerBreweries() {

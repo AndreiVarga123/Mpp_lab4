@@ -1,6 +1,7 @@
 package group.lab1.Service;
 
 import group.lab1.Model.BeerBrewery;
+import group.lab1.Model.BeerBreweryDTO;
 import group.lab1.Repo.BeerBreweryRepo;
 
 import java.util.ArrayList;
@@ -38,5 +39,9 @@ public class BeerBreweryService implements Service<BeerBrewery> {
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    public List<BeerBreweryDTO> getAllDTO(Long page){
+        return repo.findByPage(page).stream().map(BeerBreweryDTO::toDTO).collect(Collectors.toList());
     }
 }

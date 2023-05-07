@@ -12,12 +12,12 @@ public class BeerBrewery {
 
     @ManyToOne
     @JoinColumn(name = "beer_id")
-    @JsonIncludeProperties("id")
+    @JsonIncludeProperties({"id","name"})
     private Beer beer;
 
     @ManyToOne
     @JoinColumn(name = "brewery_id")
-    @JsonIncludeProperties("id")
+    @JsonIncludeProperties({"id","name"})
     private Brewery brewery;
 
     @Column(name = "quantity")
@@ -26,11 +26,24 @@ public class BeerBrewery {
     @Column(name = "quality_tested")
     private Boolean tested;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_user_name")
+    @JsonIgnoreProperties("beerBreweries")
+    private User user;
+
     public BeerBrewery(Beer beer, Brewery brewery, Integer quantity, Boolean tested) {
         this.beer = beer;
         this.brewery = brewery;
         this.quantity = quantity;
         this.tested = tested;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

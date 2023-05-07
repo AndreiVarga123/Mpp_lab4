@@ -3,12 +3,9 @@ package group.lab1.Service;
 
 import group.lab1.Model.Producer;
 import group.lab1.Model.ProducerDTO;
-import group.lab1.Model.SmallBeerDTO;
+import group.lab1.Model.AutocompleteDTO;
 import group.lab1.Repo.ProducerRepo;
-import jakarta.persistence.Tuple;
-import org.springframework.data.util.Pair;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,8 +47,8 @@ public class ProducerService implements Service<Producer> {
         repo.deleteById(id);
     }
 
-    public List<SmallBeerDTO> listProducerAutocomplete(String userInput){
+    public List<AutocompleteDTO> listProducerAutocomplete(String userInput){
         userInput = userInput.replace("\"","");
-        return repo.getNameAndId(userInput).stream().map(producer->new SmallBeerDTO(producer.get(0,Long.class),producer.get(1, String.class))).collect(Collectors.toList());
+        return repo.getNameAndId(userInput).stream().map(producer->new AutocompleteDTO(producer.get(0,Long.class),producer.get(1, String.class))).collect(Collectors.toList());
     }
 }

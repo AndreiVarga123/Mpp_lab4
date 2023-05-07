@@ -9,7 +9,17 @@ public class BreweryDTO {
     private String website;
     private Integer nrOfBeers;
 
-    public BreweryDTO(Long id, String name, String location, Integer year, String descr, String website, Integer nrOfBeers) {
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public BreweryDTO(Long id, String name, String location, Integer year, String descr, String website, Integer nrOfBeers, String userName) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -17,6 +27,7 @@ public class BreweryDTO {
         this.descr = descr;
         this.website = website;
         this.nrOfBeers = nrOfBeers;
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -76,6 +87,6 @@ public class BreweryDTO {
     }
 
     public static BreweryDTO toDTO(Brewery brewery,Integer nrOfBeers){
-        return new BreweryDTO(brewery.getId(), brewery.getName(), brewery.getLocation(), brewery.getYear(), brewery.getDescr(), brewery.getWebsite(),nrOfBeers);
+        return new BreweryDTO(brewery.getId(), brewery.getName(), brewery.getLocation(), brewery.getYear(), brewery.getDescr(), brewery.getWebsite(),nrOfBeers, brewery.getUser().getUserName());
     }
 }
