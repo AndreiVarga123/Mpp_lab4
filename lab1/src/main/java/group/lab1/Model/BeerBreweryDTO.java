@@ -70,6 +70,6 @@ public class BeerBreweryDTO {
     }
 
     static public BeerBreweryDTO toDTO(BeerBrewery beerBrewery){
-        return new BeerBreweryDTO(beerBrewery.getId(), beerBrewery.getBeer().getId(),beerBrewery.getBrewery().getId(),beerBrewery.getQuantity(),beerBrewery.getTested(), beerBrewery.getUser().getUserName());
+        return new BeerBreweryDTO(beerBrewery.getId(), beerBrewery.getBeer().getId(),beerBrewery.getBrewery().getId(),beerBrewery.getQuantity(),beerBrewery.getTested(), "");
     }
 }

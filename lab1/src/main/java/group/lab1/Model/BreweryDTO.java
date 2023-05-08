@@ -87,6 +87,6 @@ public class BreweryDTO {
     }
 
     public static BreweryDTO toDTO(Brewery brewery,Integer nrOfBeers){
-        return new BreweryDTO(brewery.getId(), brewery.getName(), brewery.getLocation(), brewery.getYear(), brewery.getDescr(), brewery.getWebsite(),nrOfBeers, brewery.getUser().getUserName());
+        return new BreweryDTO(brewery.getId(), brewery.getName(), brewery.getLocation(), brewery.getYear(), brewery.getDescr(), brewery.getWebsite(),nrOfBeers, "");
     }
 }
