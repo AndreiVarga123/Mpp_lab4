@@ -34,6 +34,7 @@ export default function HomeBeer() {
 
     const loadMaxPage = async () =>{
         const result = await axios.get("https://soparla-mpp.crabdance.com/beers/maxPage");
+        console.log(result.data);
         setMaxPage(result.data);
     }
 
