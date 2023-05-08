@@ -22,7 +22,7 @@ export default function ViewProducer() {
     },[])
 
     const loadProducer=async()=>{
-        const result = await axios.get(`http://localhost:80/producers/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/producers/${id}`);
         console.log(result);
         setProducer(result.data);
     }

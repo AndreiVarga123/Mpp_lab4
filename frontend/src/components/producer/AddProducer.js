@@ -23,7 +23,7 @@ export default function AddProducer() {
     };
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:80/producers",producer);
+        await axios.post("https://soparla-mpp.crabdance.com/producers",producer);
         navigate("/producer");
     };
 

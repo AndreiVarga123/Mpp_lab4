@@ -12,7 +12,7 @@ export default function HomeProducer() {
 
 
     const loadProducers = async () => {
-        const result = await axios.post("http://localhost:80/producers/dto",pageNr, {
+        const result = await axios.post("https://soparla-mpp.crabdance.com/producers/dto",pageNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -20,7 +20,7 @@ export default function HomeProducer() {
     };
 
     const deleteProducer = async (id) => {
-        await axios.delete(`http://localhost:80/producers/${id}`);
+        await axios.delete(`https://soparla-mpp.crabdance.com/producers/${id}`);
         loadProducers();
     }
 

@@ -28,12 +28,12 @@ export default function EditProducer() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:80/producers/${id}`, producer);
+        await axios.put(`https://soparla-mpp.crabdance.com/producers/${id}`, producer);
         navigate("/");
     };
 
     const loadProducer = async () => {
-        const result = await axios.get(`http://localhost:80/producers/${id}`);
+        const result = await axios.get(`hhttps://soparla-mpp.crabdance.com/producers/${id}`);
         setProducer(result.data);
     }
 

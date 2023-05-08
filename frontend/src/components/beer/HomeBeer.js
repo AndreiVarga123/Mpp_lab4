@@ -12,8 +12,10 @@ export default function HomeBeer() {
     const [sortedByProdYear,setSortedByProdYear] = useState(false);
     const [sortedByProdNrOfBreweries,setSortedByProdNrOfBreweries] = useState(false);
     const [pageNr,setPageNr] = useState(1);
+    const [maxPage,setMaxPage] = useState(0);
 
     useEffect(() => {
+        loadMaxPage();
         loadBeers();
     });
 
@@ -29,6 +31,11 @@ export default function HomeBeer() {
         else
             setFilterNr(e.target.value);
     };
+
+    const loadMaxPage = async () =>{
+        const result = await axios.get("https://soparla-mpp.crabdance.com/beers/stats");
+        setMaxPage(result.data);
+    }
 
     const loadBeers = async () => {
         if(sortedByProdYear){
@@ -85,7 +92,7 @@ export default function HomeBeer() {
     }
 
     const nextPage = () =>{
-        if(pageNr!==999901) {
+        if(pageNr!==maxPage) {
             setSortedByPrice(false);
             setPageNr(pageNr + 100);
         }
@@ -96,6 +103,30 @@ export default function HomeBeer() {
             setSortedByPrice(false);
             setPageNr(pageNr - 100);
         }
+    }
+
+    const changePage = (nr) =>{
+        document.getElementById("bt1").hidden=false;
+        document.getElementById("bt2").hidden=false;
+        document.getElementById("bt3").hidden=false;
+        document.getElementById("bt4").hidden=false;
+        if(nr<300){
+            document.getElementById("bt1").hidden=true;
+            document.getElementById("bt2").hidden=true;
+        }
+        if(nr>maxPage-200){
+            document.getElementById("bt1").hidden=true;
+            document.getElementById("bt2").hidden=true;
+        }
+        setPageNr(nr);
+    }
+
+    const firstPage = () =>{
+        changePage(1);
+    }
+
+    const lastPage = () =>{
+        changePage(maxPage);
     }
 
     return (
@@ -157,8 +188,15 @@ export default function HomeBeer() {
                     </tbody>
                 </table>
                 <div>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>firstPage()}>First Page</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>prevPage()}>Prev Page</button>
+                    <button id={"bt1"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-200)}>{pageNr-200}</button>
+                    <button id={"bt2"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-100)}>{pageNr-100}</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{pageNr}</button>
+                    <button id={"bt3"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{pageNr+100}</button>
+                    <button id={"bt4"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{pageNr+200}</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Next Page</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>lastPage()}>Last Page</button>
                 </div>
             </div>
         </div>

@@ -18,4 +18,8 @@ public interface BeerRepo extends JpaRepository<Beer,Long> {
 
     @Query(value="SELECT b.id,b.name FROM beers b WHERE b.name LIKE %:input% ORDER BY b.id LIMIT 100 ",nativeQuery = true)
     List<Tuple> getNameAndId(@Param("input") String userInput);
+
+
+    @Query(value="SELECT b from Beer b WHERE b.id=MAX(b.id)")
+    List<Beer> findLastPage();
 }
