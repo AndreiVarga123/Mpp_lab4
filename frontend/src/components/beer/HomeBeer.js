@@ -111,7 +111,7 @@ export default function HomeBeer() {
         document.getElementById("bt2").hidden=false;
         document.getElementById("bt3").hidden=false;
         document.getElementById("bt4").hidden=false;
-        if(nr<300){
+        if(nr<301){
             document.getElementById("bt1").hidden=true;
             document.getElementById("bt2").hidden=true;
         }
@@ -119,6 +119,7 @@ export default function HomeBeer() {
             document.getElementById("bt1").hidden=true;
             document.getElementById("bt2").hidden=true;
         }
+        console.log(nr);
         setPageNr(nr);
     }
 
@@ -193,9 +194,9 @@ export default function HomeBeer() {
                     <button className="btn btn-outline-primary mx-2" onClick={()=>prevPage()}>Prev Page</button>
                     <button id={"bt1"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-200)}>{Math.floor((pageNr)/100-2)}</button>
                     <button id={"bt2"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-100)}>{Math.floor((pageNr)/100-1)}</button>
-                    <button className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{Math.floor(pageNr/100)}</button>
-                    <button id={"bt3"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{Math.round((pageNr)/100+1)}</button>
-                    <button id={"bt4"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{Math.round((pageNr)/100+2)}</button>
+                    <button className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr)}>{Math.floor(pageNr/100)}</button>
+                    <button id={"bt3"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr+100)}>{Math.round((pageNr)/100+1)}</button>
+                    <button id={"bt4"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr+200)}>{Math.round((pageNr)/100+2)}</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Next Page</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>lastPage()}>Last Page</button>
                 </div>
