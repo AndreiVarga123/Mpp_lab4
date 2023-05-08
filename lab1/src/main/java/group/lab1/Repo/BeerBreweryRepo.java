@@ -10,4 +10,6 @@ import java.util.List;
 public interface BeerBreweryRepo extends JpaRepository<BeerBrewery, Long> {
     @Query(value="SELECT b FROM BeerBrewery b JOIN FETCH b.beer JOIN FETCH b.brewery WHERE b.id>=?1 AND b.id<=?1+99 ORDER BY b.id")
     List<BeerBrewery> findByPage(Long page);
+
+    
 }
