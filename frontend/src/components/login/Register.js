@@ -38,7 +38,7 @@ export default function Register() {
     const onSubmit =async (e) => {
         e.preventDefault();
         console.log([user,profile]);
-        const result = await axios.post("http://localhost:80/register",[user,profile],{
+        const result = await axios.post("https://soparla-mpp.crabdance.com:80/register",[user,profile],{
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -55,7 +55,7 @@ export default function Register() {
 
     const confirmation = async(e)=>{
         e.preventDefault();
-        const result = await axios.post(`http://localhost:80/register/${token}`);
+        const result = await axios.post(`https://soparla-mpp.crabdance.com:80/register/${token}`);
         console.log(result.data);
         if(result.data=="activated"){
             const root = ReactDOM.createRoot(document.getElementById('root')) ;

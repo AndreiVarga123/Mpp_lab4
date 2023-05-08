@@ -23,7 +23,7 @@ export default function Login() {
     };
     const onSubmit =async (e) => {
         e.preventDefault();
-        const result = await axios.post("http://localhost:80/login",user);
+        const result = await axios.post("https://soparla-mpp.crabdance.com:80/login",user);
         console.log(result.data);
         if(result.data[0]=="good"){
             const root = ReactDOM.createRoot(document.getElementById('root')) ;
