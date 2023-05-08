@@ -194,8 +194,8 @@ export default function HomeBeer() {
                     <button id={"bt1"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-200)}>{(pageNr)%100-2}</button>
                     <button id={"bt2"} className="btn btn-outline-primary mx-2" onClick={()=>changePage(pageNr-100)}>{(pageNr)%100-1}</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{pageNr}</button>
-                    <button id={"bt3"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{(pageNr)+1}</button>
-                    <button id={"bt4"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{(pageNr)+2}</button>
+                    <button id={"bt3"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{(pageNr)%100+1}</button>
+                    <button id={"bt4"} className="btn btn-outline-primary mx-2" onClick={()=>changePage()}>{(pageNr)%100+2}</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>nextPage()}>Next Page</button>
                     <button className="btn btn-outline-primary mx-2" onClick={()=>lastPage()}>Last Page</button>
                 </div>
