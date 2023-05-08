@@ -20,6 +20,6 @@ public interface BeerRepo extends JpaRepository<Beer,Long> {
     List<Tuple> getNameAndId(@Param("input") String userInput);
 
 
-    @Query(value="SELECT b from Beer b WHERE b.id=MAX(b.id)")
+    @Query(value="SELECT MAX(b.id) from Beer b")
     Long findLastPage();
 }
