@@ -32,14 +32,14 @@ export default function HomeBeer() {
 
     const loadBeers = async () => {
         if(sortedByProdYear){
-            const result = await axios.post("http://soparla-mpp.crabdance.com:80/beers/stats",pageNr, {
+            const result = await axios.post("https://soparla-mpp.crabdance.com:80/beers/stats",pageNr, {
                 headers: {
                     'Content-Type': 'application/json'
                 }});
             setBeers(result.data);
         }
         else if(sortedByProdNrOfBreweries){
-            const result = await axios.post("http://soparla-mpp.crabdance.com:80/beers/stats2",pageNr, {
+            const result = await axios.post("https://soparla-mpp.crabdance.com:80/beers/stats2",pageNr, {
                 headers: {
                     'Content-Type': 'application/json'
                 }});
@@ -47,7 +47,7 @@ export default function HomeBeer() {
             setBeers(result.data);
         }
         else{
-            const result = await axios.post("http://soparla-mpp.crabdance.com:80/beers/filter",[pageNr,filterNr], {
+            const result = await axios.post("https://soparla-mpp.crabdance.com:80/beers/filter",[pageNr,filterNr], {
                 headers: {
                     'Content-Type': 'application/json'
                 }});
