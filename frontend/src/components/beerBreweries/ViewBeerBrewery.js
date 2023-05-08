@@ -20,7 +20,7 @@ export default function ViewBeerBrewery() {
     },[])
 
     const loadBeerBrewery=async()=>{
-        const result = await axios.get(`http://localhost:80/beer_breweries/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/beer_breweries/${id}`);
         console.log(result);
         setBeerBrewery(result.data);
     }

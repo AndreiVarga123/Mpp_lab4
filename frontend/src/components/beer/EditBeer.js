@@ -28,12 +28,12 @@ export default function EditBeer() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`https://soparla-mpp.crabdance.com:80/beers/${id}`, beer);
+        await axios.put(`https://soparla-mpp.crabdance.com/beers/${id}`, beer);
         navigate("/");
     };
 
     const loadBeer = async () => {
-        const result = await axios.get(`https://soparla-mpp.crabdance.com:80/beers/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/beers/${id}`);
         setBeer(result.data);
     }
 

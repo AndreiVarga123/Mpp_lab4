@@ -23,7 +23,7 @@ export default function ViewBeer() {
     },[])
 
     const loadBeer=async()=>{
-        const result = await axios.get(`https://soparla-mpp.crabdance.com:80/beers/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/beers/${id}`);
         console.log(result);
         setBeer(result.data);
     }

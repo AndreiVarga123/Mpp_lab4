@@ -62,7 +62,7 @@ export default function HomeBeer() {
     };
 
     const deleteBeer = async (id) => {
-        await axios.delete(`http://localhost:80/beers/${id}`);
+        await axios.delete(`https://soparla-mpp.crabdance.com/beers/${id}`);
         loadBeers();
     }
 

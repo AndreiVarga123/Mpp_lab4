@@ -12,7 +12,7 @@ export default function HomeBeerBrewery() {
 
 
     const loadBeerBreweries = async () => {
-        const result = await axios.post("http://localhost:80/beer_breweries/dto",pageNr, {
+        const result = await axios.post("https://soparla-mpp.crabdance.com/beer_breweries/dto",pageNr, {
             headers: {
                 'Content-Type': 'application/json'
             }});
@@ -20,7 +20,7 @@ export default function HomeBeerBrewery() {
     };
 
     const deleteBeerBrewery = async (id) => {
-        await axios.delete(`http://localhost:80/beer_breweries/${id}`);
+        await axios.delete(`https://soparla-mpp.crabdance.com/beer_breweries/${id}`);
         loadBeerBreweries();
     }
 

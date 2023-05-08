@@ -22,7 +22,7 @@ export default function ViewBrewery() {
     },[])
 
     const loadBrewery=async()=>{
-        const result = await axios.get(`http://localhost:80/breweries/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/breweries/${id}`);
         console.log(result);
         setBrewery(result.data);
     }

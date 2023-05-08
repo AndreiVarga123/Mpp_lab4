@@ -39,13 +39,13 @@ export default function AddBeerBrewery(){
     const onSubmit = async (e) => {
         e.preventDefault();
         console.log(beerBrewery);
-        await axios.post("http://localhost:80/beer_breweries",beerBrewery);
+        await axios.post("https://soparla-mpp.crabdance.com/beer_breweries",beerBrewery);
         navigate("/beerBrewery");
     };
 
     const loadBeers = async() =>{
         if(beerAutocompleteInput!=="" && beerInputFocused===true) {
-            const result = await axios.post("http://localhost:80/beers/autocomplete", beerAutocompleteInput, {
+            const result = await axios.post("https://soparla-mpp.crabdance.com/beers/autocomplete", beerAutocompleteInput, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -57,7 +57,7 @@ export default function AddBeerBrewery(){
 
     const loadBreweries = async() =>{
         if(breweryAutocompleteInput!=="" && breweryInputFocused===true) {
-            const result = await axios.post("http://localhost:80/breweries/autocomplete", breweryAutocompleteInput, {
+            const result = await axios.post("https://soparla-mpp.crabdance.com/breweries/autocomplete", breweryAutocompleteInput, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

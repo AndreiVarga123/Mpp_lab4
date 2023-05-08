@@ -29,12 +29,12 @@ export default function EditBrewery() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:80/breweries/${id}`, brewery);
+        await axios.put(`https://soparla-mpp.crabdance.com/breweries/${id}`, brewery);
         navigate("/brewery");
     };
 
     const loadBrewery = async () => {
-        const result = await axios.get(`http://localhost:80/breweries/${id}`);
+        const result = await axios.get(`https://soparla-mpp.crabdance.com/breweries/${id}`);
         setBrewery(result.data);
     }
 

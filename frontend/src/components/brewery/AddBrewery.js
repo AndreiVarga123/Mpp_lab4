@@ -25,7 +25,7 @@ export default function AddBrewery() {
 
     const onSubmit =async (e) => {
         e.preventDefault();
-        await axios.post(`http://localhost:80/breweries`, brewery);
+        await axios.post(`https://soparla-mpp.crabdance.com/breweries`, brewery);
         navigate("/brewery");
     };
 
