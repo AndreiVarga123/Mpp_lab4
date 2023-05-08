@@ -80,4 +80,16 @@ public class BeerService implements Service<Beer> {
         return repo.getNameAndId(userInput).stream().map(beer->new AutocompleteDTO(beer.get(0,Long.class),beer.get(1, String.class))).collect(Collectors.toList());
     }
 
+    public Long getBeerMaxPage(){
+        int count = 99;
+        long maxPage = repo.findLastPage();
+        while (count!=0){
+            maxPage--;
+            if(repo.findById(maxPage)!=null){
+                count--;
+            }
+        }
+        return maxPage;
+    }
+
 }

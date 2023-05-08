@@ -33,7 +33,7 @@ export default function HomeBeer() {
     };
 
     const loadMaxPage = async () =>{
-        const result = await axios.get("https://soparla-mpp.crabdance.com/beers/stats");
+        const result = await axios.get("https://soparla-mpp.crabdance.com/beers/maxPage");
         setMaxPage(result.data);
     }
 

@@ -263,4 +263,9 @@ public class BeerControllerJson {
             return response;
         }
     }
+
+    @GetMapping("/beers/maxPage")
+    public Long getMaxPage(){
+        return beerService.getBeerMaxPage();
+    }
 }

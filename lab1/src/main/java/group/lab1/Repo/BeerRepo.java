@@ -21,5 +21,5 @@ public interface BeerRepo extends JpaRepository<Beer,Long> {
 
 
     @Query(value="SELECT b from Beer b WHERE b.id=MAX(b.id)")
-    List<Beer> findLastPage();
+    Long findLastPage();
 }
