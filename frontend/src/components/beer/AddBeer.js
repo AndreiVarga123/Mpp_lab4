@@ -75,7 +75,7 @@ export default function AddBeer(){
         if(keyInput==="Unidentified") {
             const inputIdAndName = autocompleteInput.split(":")
             const inputId = inputIdAndName.at(0).charAt(inputIdAndName.at(0).length - 1)
-            const result = await axios.get(`http://localhost:80/producers/${inputId}`);
+            const result = await axios.get(`https://soparla-mpp.crabdance.com:80/producers/${inputId}`);
             setBeer({...beer,producer:result.data});
             console.log(beer);
         }
